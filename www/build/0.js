@@ -1,6 +1,10 @@
 webpackJsonp([0],{
 
+<<<<<<< HEAD
+/***/ 315:
+=======
 /***/ 317:
+>>>>>>> 616ce6b70a5b906f9ca34aca98e441dc71e88e8d
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27,7 +31,7 @@ var TeacherProfilePageModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__teacher_profile__["a" /* TeacherProfilePage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__teacher_profile__["a" /* TeacherProfilePage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__teacher_profile__["a" /* TeacherProfilePage */]),
             ],
         })
     ], TeacherProfilePageModule);

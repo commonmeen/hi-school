@@ -28,6 +28,7 @@
     "angularfire2": "^4.0.0-rc.1",
     "cordova-android": "^6.3.0",
     "cordova-ios": "^4.5.4",
+    "cordova-plugin-crosswalk-webview": "^2.3.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-firebase": "^0.1.24",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -54,6 +55,16 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
+<<<<<<< HEAD
+=======
+      "cordova-plugin-crosswalk-webview": {
+        "XWALK_VERSION": "23+",
+        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+        "XWALK_MODE": "embedded",
+        "XWALK_MULTIPLEAPK": "true"
+      },
+>>>>>>> 985dda4d30e751f44e3fc63b17343d83e4ac9b07
       "cordova-plugin-firebase": {}
     },
     "platforms": [

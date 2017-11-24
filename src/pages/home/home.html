@@ -10,12 +10,28 @@
 <ion-content padding>
 
 
-  <ion-item>
-    <ion-input type="text" name="username" placeholder="Username"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" name="password" placeholder="Password"></ion-input>
-  </ion-item>
+	<form (ngSubmit)="checkUser()">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					Username :
+				</ion-col>
+				<ion-col>
+					<ion-input type="text" [(ngModel)]="username" name='username' placeholder="username"></ion-input>
+				</ion-col>
+			</ion-row>
 
-  <button ion-button (click)="moveToTeacher()" class="login-button">Login</button>
+			<ion-row>
+				<ion-col>
+					Password :
+				</ion-col>
+				<ion-col>
+					<ion-input type="password" [(ngModel)]="pass" name='pass' placeholder="password"></ion-input>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<button ion-button type="submit">Login</button>
+	</form>
+    
 </ion-content>
+

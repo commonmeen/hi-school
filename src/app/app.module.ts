@@ -32,7 +32,7 @@ export const config = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule,
+    AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
