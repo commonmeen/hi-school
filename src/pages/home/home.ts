@@ -78,7 +78,7 @@ export class HomePage {
 		this.presentAlert() ;
 		console.log(this.username + 'login unsuccessful');
 	} else if (this.status == 1){
- 		this.moveToTeacher();
+ 		this.moveToTeacher(this.username);
  		console.log(this.username + 'login successful');
 	} else if (this.status == 2){
 
@@ -91,8 +91,9 @@ export class HomePage {
 	}
   }
 
-  moveToTeacher(){
-    this.navCtrl.push(TeacherProfilePage);
+  moveToTeacher(aa){
+  	console.log(aa + 'is username');
+    this.navCtrl.push(TeacherProfilePage,aa);
   }
 
   presentAlert() {

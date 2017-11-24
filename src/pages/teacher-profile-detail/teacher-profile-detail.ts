@@ -20,6 +20,7 @@ export class TeacherProfileDetailPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public fireBase: AngularFireDatabase) {
+    
         fireBase.list('/Teacher').subscribe(data =>{
           this.teacherDetail=data;
         })

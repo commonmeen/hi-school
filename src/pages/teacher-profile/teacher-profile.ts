@@ -24,13 +24,20 @@ export class TeacherProfilePage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public fireBase: AngularFireDatabase) {
+    console.log(navParams.data);
               fireBase.list('/Teacher').subscribe(data=>{
-                this.teachers=data
+                this.teachers=data;
               });
-      
-    for(var i =0; i==this.teachers.length-1 ; i++){
+      this.userId = navParams.data ;
+      console.log(this.userId + 'userID');
+    for(var i = this.teachers.length - 1; i >= 0; i--){
+      console.log(i);
+      console.log(this.teachers[i].t_no);
       if(this.teachers[i].t_no==this.userId){
-        this.teacherDetail=this.teachers[i]
+
+        this.teacherDetail=this.teachers[i];
+        console.log(this.teacherDetail);
+        break;
       }
     }
   }
