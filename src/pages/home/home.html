@@ -7,6 +7,28 @@
 </ion-header>
 
 <ion-content padding>
-    <button ion-button (click)="moveToTeacher()">Login</button>
+	<form (ngSubmit)="checkUser()">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					Username :
+				</ion-col>
+				<ion-col>
+					<ion-input type="text" [(ngModel)]="username" name='username' placeholder="username"></ion-input>
+				</ion-col>
+			</ion-row>
+
+			<ion-row>
+				<ion-col>
+					Password :
+				</ion-col>
+				<ion-col>
+					<ion-input type="password" [(ngModel)]="pass" name='pass' placeholder="password"></ion-input>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<button ion-button type="submit">Login</button>
+	</form>
+    
  
 </ion-content>
