@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { TeacherProfilePage } from '../teacher-profile/teacher-profile';
 
 @Component({
   selector: 'page-home',
@@ -11,4 +12,8 @@ export class HomePage {
 
   }
 
+
+  moveToTeacher(){
+    this.navCtrl.push(TeacherProfilePage);
+  }
 }

@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
+import { TeacherProfilePage} from '../pages/teacher-profile/teacher-profile'
+import { TabsPage } from '../pages/tabs/tabs'
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -21,7 +23,9 @@ export const config = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TeacherProfilePage,
+    TabsPage,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ export const config = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TeacherProfilePage,
+    TabsPage,
   ],
   providers: [
     StatusBar,
