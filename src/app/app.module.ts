@@ -10,6 +10,7 @@ import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
 import { TeacherProfilePage} from '../pages/teacher-profile/teacher-profile'
 import { TabsPage } from '../pages/tabs/tabs'
+import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail";
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -26,6 +27,7 @@ export const config = {
     HomePage,
     TeacherProfilePage,
     TabsPage,
+    TeacherProfileDetailPage
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ export const config = {
     MyApp,
     HomePage,
     TeacherProfilePage,
+    TeacherProfileDetailPage,
     TabsPage,
   ],
   providers: [

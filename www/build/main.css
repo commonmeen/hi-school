@@ -25694,3 +25694,12 @@ ion-navbar.toolbar {
   border: solid #00998e;
   margin-left: 29%;
 }
+
+.edit-button {
+  margin-left: 40%;
+}
+
+.login-button {
+  margin-top: 5%;
+  margin-left: 40%;
+}
