@@ -1,19 +1,21 @@
 <ion-header>
   <ion-navbar>
-    <ion-title ><img src="pic/logo.png" class="logo" >
+    <ion-title>
+      <img src="pic/logo.png" class="logo">
     </ion-title>
-    
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    
-    <ion-item>
-        <ion-input type="text"  name="username" placeholder="Username"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-input type="text"  name="password" placeholder="Password"></ion-input>
-        </ion-item>
 
-    <button ion-button (click)="moveToTeacher()" class="login-button">Login</button>
+
+  <ion-item>
+    <ion-input type="text" name="username" placeholder="Username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="password" placeholder="Password"></ion-input>
+  </ion-item>
+
+  <button ion-button (click)="moveToTeacher()" class="login-button">Login</button>
 </ion-content>

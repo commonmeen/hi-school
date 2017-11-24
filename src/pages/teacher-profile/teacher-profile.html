@@ -17,10 +17,10 @@
 
 
 <ion-content padding>
-  <ion-card style="text-align:center">
+  <ion-card style="text-align:center" *ngFor="let t of teacherDetail">
       <img src="pic/girl.png" class="t-profile"><br>
       <p >Hello!</p>
-      <p > ครู สมศรี </p>
+      <p >{{t.t_name}}</p>
       <ion-grid>
         <ion-row>
           <ion-col col-6><button ion-button (click)="moveToProfileDetail()">ประวัติส่วนตัว</button></ion-col>
