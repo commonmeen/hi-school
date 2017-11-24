@@ -55,8 +55,6 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-<<<<<<< HEAD
-=======
       "cordova-plugin-crosswalk-webview": {
         "XWALK_VERSION": "23+",
         "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
@@ -64,7 +62,6 @@
         "XWALK_MODE": "embedded",
         "XWALK_MULTIPLEAPK": "true"
       },
->>>>>>> 985dda4d30e751f44e3fc63b17343d83e4ac9b07
       "cordova-plugin-firebase": {}
     },
     "platforms": [
