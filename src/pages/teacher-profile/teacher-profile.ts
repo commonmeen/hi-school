@@ -32,11 +32,11 @@ export class TeacherProfilePage {
       this.userId = data;
     }) );
      this.presentLoading();
-     fireBase.list('/Teacher').subscribe(data=>{
+     setTimeout(()=>{fireBase.list('/Teacher').subscribe(data=>{
           this.teachers=data;
       });
       this.findDataTeacher();
-      console.log(this.teacherDetail + 'detail con');
+      console.log(this.teacherDetail + 'detail con');}, 3000);
      this.teacherDetail.t_name = 'wait' ;
       console.log(this.teacherDetail);
   }
@@ -45,7 +45,7 @@ export class TeacherProfilePage {
     console.log('ionViewDidLoad TeacherProfilePage');
   }
   moveToProfileDetail(){
-    this.navCtrl.push(TeacherProfileDetailPage,this.teacherDetail);
+    this.navCtrl.push(TeacherProfileDetailPage);
   }
 
   findDataTeacher(){
