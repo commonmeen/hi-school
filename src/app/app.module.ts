@@ -4,15 +4,20 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
+import { MyApp } from './app.component';
+
+import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
 import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail"
 import { TCategoryDetailPage } from "../pages/t-category-detail/t-category-detail";
+
 import { TCategoryAddPage } from "../pages/t-category-add/t-category-add";
+
+import { AllAdminPage } from "../pages/all-admin/all-admin" ;
+import { AdminAddUserPage } from '../pages/admin-add-user/admin-add-user' ;
+
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -30,7 +35,10 @@ export const config = {
     AllTeacherPage,
     TeacherProfileDetailPage,
     TCategoryDetailPage,
-    TCategoryAddPage
+    TCategoryAddPage,
+    AllAdminPage,
+    AdminAddUserPage
+
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,9 @@ export const config = {
     AllTeacherPage,
     TeacherProfileDetailPage,
     TCategoryDetailPage,
-    TCategoryAddPage
+    TCategoryAddPage,
+    AllAdminPage,
+    AdminAddUserPage
 
   ],
   providers: [
