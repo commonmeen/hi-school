@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
 
 /**
- * Generated class for the TCategoryPage page.
+ * Generated class for the TCategoryDetailPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,20 +10,16 @@ import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
 
 @IonicPage()
 @Component({
-  selector: 'page-t-category',
-  templateUrl: 't-category.html',
+  selector: 'page-t-category-detail',
+  templateUrl: 't-category-detail.html',
 })
-export class CategoryPage {
+export class TCategoryDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TCategoryPage');
-  }
-
-  moveToCategoryDetail(){
-    this.navCtrl.push(TCategoryDetailPage);
+    console.log('ionViewDidLoad TCategoryDetailPage');
   }
 
 }

@@ -9,9 +9,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
-import { TabsPage } from '../pages/tabs/tabs'
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
-
+import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail"
+import { TCategoryDetailPage } from "../pages/t-category-detail/t-category-detail";
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -26,8 +26,9 @@ export const config = {
   declarations: [
     MyApp,
     HomePage,
-    TabsPage,
-    AllTeacherPage
+    AllTeacherPage,
+    TeacherProfileDetailPage,
+    TCategoryDetailPage
   ],
   imports: [
     BrowserModule,
@@ -40,8 +41,9 @@ export const config = {
   entryComponents: [
     MyApp,
     HomePage,
-    TabsPage,
-    AllTeacherPage
+    AllTeacherPage,
+    TeacherProfileDetailPage,
+    TCategoryDetailPage
 
   ],
   providers: [
