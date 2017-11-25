@@ -19,27 +19,39 @@
   <p>วิชา</p>
   <ion-list>
     <ion-item>
-      <button>ภาษาอังกฤษ
+      ภาษาอังกฤษ
         <p>ป.1/2, ป.1/3</p>
-      </button>
+      
     </ion-item>
     <ion-row>
       <ion-col col-9 >
         <ion-label>หมวดหมู่งาน</ion-label> 
       </ion-col>
       <ion-col >
-        <button ion-button small class="add-button">เพิ่ม</button>
+        <button ion-button small class="add-button" color="secondary" (click)="addCategory()">เพิ่ม</button>
       </ion-col>
     </ion-row>
     
-    <ion-item>
-      งานบทที่ 1
-    </ion-item>
-    <ion-item>
-      งานบทที่ 2
-    </ion-item>
-    <ion-item>
-      งานบทที่ 3
-    </ion-item>
+    <ion-list>
+      <ion-item-sliding #item>
+        <ion-item>
+          งานที่ 1 
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button (click)="edit(item)" >Edit</button>
+          <button ion-button (click)="delete(item)" color="danger">Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item-sliding #item>
+        <ion-item>
+          งานที่ 2
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button (click)="edit(item)" >Edit</button>
+          <button ion-button (click)="delete(item)" color="danger">Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+   
   </ion-list>
 </ion-content>
