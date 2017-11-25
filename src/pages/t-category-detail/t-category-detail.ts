@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ItemSliding, AlertController } from 'ionic-angular';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+//import { AngularFireModule } from 'angularfire2';
+import {AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
 
 
@@ -29,7 +29,7 @@ export class TCategoryDetailPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController,
+    public alertCtrl: AlertController,
     public fireBase: AngularFireDatabase) {
 
     this.categorys = fireBase.list('/Category');

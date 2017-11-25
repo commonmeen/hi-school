@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 
 /**
@@ -51,7 +51,9 @@ export class AdminAddTeacherPage {
   }
 
   addTeacher(){
-  	let newTeacher : any = {t_no:this.lastTeacherNo, t_name:this.name, t_surname:this.surname, r_no:'', national_id:this.national, email:this.email, tel:this.tel}
+  	let newTeacher : any = {t_no:this.lastTeacherNo, t_name:this.name, 
+  		t_surname:this.surname, r_no:'', national_id:this.national,
+  		 email:this.email, tel:this.tel, password:'12345678'} ;
     this.teachers.push(newTeacher);
     this.navCtrl.pop();
   }

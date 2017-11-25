@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams  } from 'ionic-angular';
-import { TeacherProfilePage } from '../teacher-profile/teacher-profile';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+//import { TeacherProfilePage } from '../teacher-profile/teacher-profile';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AlertController } from 'ionic-angular';
 import { AllTeacherPage } from '../all-teacher/all-teacher' ;
 import { Storage } from '@ionic/storage';

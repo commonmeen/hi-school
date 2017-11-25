@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TeacherProfileDetailPage } from '../teacher-profile-detail/teacher-profile-detail';
-import { AngularFireModule } from 'angularfire2' ;
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database' ;
+//import { AngularFireModule } from 'angularfire2' ;
+import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdminAddUserPage } from '../admin-add-user/admin-add-user' ;
-import { AngularFireModule } from 'angularfire2' ;
-import { AngularFireDatabaseModule, AngularFireDatabase,FirebaseListObservable } from 'angularfire2/database' ;
+//import { AngularFireModule } from 'angularfire2' ;
+import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 

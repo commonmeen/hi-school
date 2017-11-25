@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+//import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ToastController } from 'ionic-angular';
 

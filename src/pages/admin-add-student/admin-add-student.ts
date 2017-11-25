@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 /**
  * Generated class for the AdminAddStudentPage page.
@@ -47,7 +47,9 @@ export class AdminAddStudentPage {
   }
 
   addStudent(){
-  	let newStudent : any = {std_no:this.lastStudentNo, std_name:this.name, std_surname:this.surname, r_no:'',tel:this.tel, gender:this.gender}
+  	let newStudent : any = {std_no:this.lastStudentNo, 
+  		std_name:this.name, std_surname:this.surname, r_no:'',
+  		tel:this.tel, gender:this.gender, password:'12345678'} ;
     this.students.push(newStudent);
     this.navCtrl.pop();
   }
