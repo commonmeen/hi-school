@@ -3,6 +3,8 @@ import { NavController, NavParams  } from 'ionic-angular';
 import { TeacherProfilePage } from '../teacher-profile/teacher-profile';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { AlertController } from 'ionic-angular';
+import { AllTeacherPage } from '../all-teacher/all-teacher' ;
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -15,11 +17,14 @@ export class HomePage {
   teacherList: any[];
   studentList: any[];
   parentList: any[];
-  constructor(public alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public angularfire: AngularFireDatabase) {
+  constructor(public alertCtrl: AlertController, public navCtrl: NavController, 
+    public navParams: NavParams, public angularfire: AngularFireDatabase,
+    public storage:Storage) {
   	// this.teacherList = angularfire.list('/teacher');
   	// this.studentList = angularfire.list('/student');
   	// this.parentList = angularfire.list('/parent');
-  	angularfire.list('/Teacher').subscribe(data=> {
+  	
+    angularfire.list('/Teacher').subscribe(data=> {
       this.teacherList = data;
       console.dir(this.teacherList+" lenght = "+this.teacherList.length);
       
@@ -78,6 +83,7 @@ export class HomePage {
 		this.presentAlert() ;
 		console.log(this.username + 'login unsuccessful');
 	} else if (this.status == 1){
+    this.storage.set('UserId',this.username);
  		this.moveToTeacher(this.username);
  		console.log(this.username + 'login successful');
 	} else if (this.status == 2){
@@ -93,7 +99,7 @@ export class HomePage {
 
   moveToTeacher(aa){
   	console.log(aa + 'is username');
-    this.navCtrl.push(TeacherProfilePage,aa);
+    this.navCtrl.push(AllTeacherPage,aa);
   }
 
   presentAlert() {
