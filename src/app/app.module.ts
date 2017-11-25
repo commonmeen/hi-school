@@ -12,6 +12,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database' ;
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
 import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail"
 import { TCategoryDetailPage } from "../pages/t-category-detail/t-category-detail";
+import { TCategoryAddPage } from "../pages/t-category-add/t-category-add";
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -28,7 +29,8 @@ export const config = {
     HomePage,
     AllTeacherPage,
     TeacherProfileDetailPage,
-    TCategoryDetailPage
+    TCategoryDetailPage,
+    TCategoryAddPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ export const config = {
     HomePage,
     AllTeacherPage,
     TeacherProfileDetailPage,
-    TCategoryDetailPage
+    TCategoryDetailPage,
+    TCategoryAddPage
 
   ],
   providers: [
