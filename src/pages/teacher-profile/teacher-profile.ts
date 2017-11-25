@@ -32,11 +32,11 @@ export class TeacherProfilePage {
       this.userId = data;
     }) );
      this.presentLoading();
-     setTimeout(()=>{fireBase.list('/Teacher').subscribe(data=>{
+     fireBase.list('/Teacher').subscribe(data=>{
           this.teachers=data;
       });
       this.findDataTeacher();
-      console.log(this.teacherDetail + 'detail con');}, 3000);
+      console.log(this.teacherDetail + 'detail con');
      this.teacherDetail.t_name = 'wait' ;
       console.log(this.teacherDetail);
   }
@@ -62,19 +62,11 @@ export class TeacherProfilePage {
     }
   }
 
-  getUserId(){
-    
-  }
-
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
       duration: 3000
     });
     loader.present();
-  }
-
-  delay() {
-    return new Promise(resolve => setTimeout(resolve, 3000));
   }
 }

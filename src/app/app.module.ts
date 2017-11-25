@@ -9,7 +9,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
-// import { TeacherProfilePage} from '../pages/teacher-profile/teacher-profile'
 import { TabsPage } from '../pages/tabs/tabs'
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
 
@@ -27,7 +26,6 @@ export const config = {
   declarations: [
     MyApp,
     HomePage,
-    // TeacherProfilePage,
     TabsPage,
     AllTeacherPage
   ],
