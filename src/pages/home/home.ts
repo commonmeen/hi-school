@@ -53,7 +53,6 @@ export class HomePage {
   	for (var i = this.teacherList.length - 1; i >= 0; i--) {
   		console.log(this.teacherList[i].t_no);
       if(this.teacherList[i].t_no == this.username){
-      	
       	if(this.teacherList[i].password == this.pass){
       		this.status = 1;
       		console.log("teacher");

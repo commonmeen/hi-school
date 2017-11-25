@@ -9,9 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
-// import { TeacherProfilePage} from '../pages/teacher-profile/teacher-profile'
-import { TabsPage } from '../pages/tabs/tabs'
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
+import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail"
 
 
 export const config = {
@@ -27,9 +26,8 @@ export const config = {
   declarations: [
     MyApp,
     HomePage,
-    // TeacherProfilePage,
-    TabsPage,
-    AllTeacherPage
+    AllTeacherPage,
+    TeacherProfileDetailPage
   ],
   imports: [
     BrowserModule,
@@ -42,8 +40,8 @@ export const config = {
   entryComponents: [
     MyApp,
     HomePage,
-    TabsPage,
-    AllTeacherPage
+    AllTeacherPage,
+    TeacherProfileDetailPage
 
   ],
   providers: [

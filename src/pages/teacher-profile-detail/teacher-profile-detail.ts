@@ -15,15 +15,18 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
   templateUrl: 'teacher-profile-detail.html',
 })
 export class TeacherProfileDetailPage {
-  teacherDetail : any[];
+  teachers : any[];
+  teacherDetail : any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public fireBase: AngularFireDatabase) {
     
         fireBase.list('/Teacher').subscribe(data =>{
-          this.teacherDetail=data;
+          this.teachers=data;
         })
+      this.teacherDetail = this.navParams.data;
+      
   }
 
   

@@ -19,7 +19,6 @@ export class AllTeacherPage {
   tHomeRoot = 'TeacherProfilePage'
   tTaskRoot = 'TaskPage'
   tCategoryRoot = 'CategoryPage'
-  tProfileRoot = 'TeacherProfileDetailPage'
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

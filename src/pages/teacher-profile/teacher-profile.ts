@@ -45,7 +45,7 @@ export class TeacherProfilePage {
     console.log('ionViewDidLoad TeacherProfilePage');
   }
   moveToProfileDetail(){
-    this.navCtrl.push(TeacherProfileDetailPage);
+    this.navCtrl.push(TeacherProfileDetailPage,this.teacherDetail);
   }
 
   findDataTeacher(){

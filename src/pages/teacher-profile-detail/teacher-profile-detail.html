@@ -21,39 +21,27 @@
   <ion-list >
     <ion-item >
       ชื่อ-นามสกุล 
-      <p>สมศรี เรียนดี</p>
+      <p>{{teacherDetail.t_name}}  {{teacherDetail.t_surname}}</p>
     </ion-item>
     <ion-item>
       ประจำชั้น
-      <p>ม.1/1</p>
+      <p>{{teacherDetail.r_no}}</p>
     </ion-item>
     <ion-item>
       เลขประจำตัวประชาชน
-      <p>1104887397234</p>
+      <p>{{teacherDetail.national_id}}</p>
     </ion-item>
     <ion-item>
       เลขประจำตัวครู
-      <p>448756</p>
-    </ion-item>
-    <ion-item>
-      เพศ
-      <p>หญิง</p>
-    </ion-item>
-    <ion-item>
-      วันเกิด
-      <p>19/9/1984</p>
-    </ion-item>
-    <ion-item>
-      ที่อยู่
-      <p>55/234 บางมด กทม.</p>
+      <p>{{teacherDetail.t_no}}</p>
     </ion-item>
     <ion-item>
       อีเมลล์
-      <p>somsri@gmail.com</p>
+      <p>{{teacherDetail.email}}</p>
     </ion-item>
     <ion-item>
       เบอร์โทรศัพท์
-      <p>0876382671</p>
+      <p>{{teacherDetail.tel}}</p>
     </ion-item>
   </ion-list>
 
