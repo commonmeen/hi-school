@@ -24,25 +24,26 @@ export class AdminProfilePage {
 	name : string = '';
 teachers:any[]=[];
 students:any[]=[];
-  count : number = 0 ;
-  tcount : number = 0 ;
+  count : number = 0;
+  tcount : number = 0;
   scount : number = 0 ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	public storage: Storage,public loadingCtrl: LoadingController,
     public fireBase: AngularFireDatabase) {
+  //  this.count = 0 ;
   this.storage.ready().then(() => this.storage.get('admin').then((data) => {
       this.name = data;
     }) );
     fireBase.list('/Teacher').subscribe(data=>{
           this.teachers=data;
-          this.count += this.teachers.length ;
           this.tcount = this.teachers.length ;
+          this.calCount();
     });
     fireBase.list('/Student').subscribe(data=>{
           this.students=data;
-          this.count += this.students.length ;
           this.scount = this.students.length ;
+          this.calCount();
     });
   }
 
@@ -60,5 +61,9 @@ students:any[]=[];
       duration: 3000
     });
     loader.present();
+  }
+
+  calCount(){
+    this.count = this.teachers.length + this.students.length ;
   }
 }
