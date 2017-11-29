@@ -24,7 +24,7 @@ export class TCategoryDetailPage {
   c_no: string;
   c_name: string;
   c_percent: string;
-  s_no: string;
+  subject: any;
   key:string;
 
   constructor(public navCtrl: NavController,
@@ -34,11 +34,13 @@ export class TCategoryDetailPage {
 
     this.categorys = fireBase.list('/Category');
     fireBase.list('/Category').subscribe(data => {
-      this.getCategory = data;
+    this.getCategory = data;
       console.log("test", this.getCategory);
     });
     console.log("123132", this.getCategory);
 
+    this.subject = this.navParams.data;
+    
   }
 
   ionViewDidLoad() {
@@ -60,4 +62,8 @@ export class TCategoryDetailPage {
     }
     this.categorys.remove(this.key);
   }
+
+
+
+
 }
