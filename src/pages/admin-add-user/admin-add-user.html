@@ -14,5 +14,20 @@
 
 
 <ion-content padding>
-
+	<ion-grid>
+		<ion-row>
+			<ion-col col6>
+				<ion-card (click)='Teacher()'>
+					<img class='user' src='pic/teacher.png'/>
+					<p class='textUser'> Teacher </p>
+				</ion-card>
+			</ion-col>
+			<ion-col col6>
+				<ion-card (click)='Student()'>
+					<img class='user' src='pic/study.png'/>
+					<p class='textUser'> Student </p>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>

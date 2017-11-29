@@ -12,12 +12,11 @@ import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
 import { TeacherProfileDetailPage } from "../pages/teacher-profile-detail/teacher-profile-detail"
 import { TCategoryDetailPage } from "../pages/t-category-detail/t-category-detail";
-
 import { TCategoryAddPage } from "../pages/t-category-add/t-category-add";
-
 import { AllAdminPage } from "../pages/all-admin/all-admin" ;
 import { AdminAddUserPage } from '../pages/admin-add-user/admin-add-user' ;
-
+import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teacher';
+import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -37,7 +36,9 @@ export const config = {
     TCategoryDetailPage,
     TCategoryAddPage,
     AllAdminPage,
-    AdminAddUserPage
+    AdminAddUserPage,
+    AdminAddTeacherPage,
+    AdminAddStudentPage
 
   ],
   imports: [
@@ -56,7 +57,9 @@ export const config = {
     TCategoryDetailPage,
     TCategoryAddPage,
     AllAdminPage,
-    AdminAddUserPage
+    AdminAddUserPage,
+    AdminAddTeacherPage,
+    AdminAddStudentPage
 
   ],
   providers: [
