@@ -32,10 +32,13 @@
       </ion-col>
     </ion-row>
     
-    <ion-list *ngFor='let detail of getCategory '>
-      <ion-item-sliding #item>
-        <ion-item>
-          {{detail.c_name}}
+    <ion-list *ngFor='let list of listCategory' class="listCategory" >
+      <ion-item-sliding #item no-lines>
+        <ion-item no-lines>
+          <ion-row>
+            <ion-col col-10>{{list.c_name}}</ion-col>
+            <ion-col>{{list.c_percent}}%</ion-col>
+          </ion-row>
         </ion-item>
         <ion-item-options side="right">
           <button ion-button (click)="edit(item)" >Edit</button>

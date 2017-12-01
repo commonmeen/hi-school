@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 //import { AngularFireModule } from 'angularfire2';
-import {AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
 
 
@@ -20,27 +20,55 @@ import { TCategoryAddPage } from '../t-category-add/t-category-add';
 export class TCategoryDetailPage {
   categorys: FirebaseListObservable<any[]>;
   getCategory: any[] = [];
-  categoryDetail:any;
+  categoryDetail: any;
+  listCategory: any[] = [];
   c_no: string;
   c_name: string;
   c_percent: string;
   subject: any;
-  key:string;
+  key: string;
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public fireBase: AngularFireDatabase) {
 
+    this.subject = this.navParams.data;
+    console.log("subNo",this.subject.s_no);
     this.categorys = fireBase.list('/Category');
     fireBase.list('/Category').subscribe(data => {
-    this.getCategory = data;
+      this.getCategory = data;
       console.log("test", this.getCategory);
-    });
-    console.log("123132", this.getCategory);
+      console.log("123132", this.getCategory);
+      this.subject = this.navParams.data;
+      console.log("subject", this.subject);
 
-    this.subject = this.navParams.data;
-    
+      for (var i = this.getCategory.length - 1; i >= 0; i--) {
+        console.log("loop")
+        console.log("cat_s_no",this.getCategory[i].s_no);
+        console.log("subNo",this.subject.s_no);
+        if (this.getCategory[i].s_no == this.subject.s_no) {
+          console.log("yes");
+          this.listCategory.push(this.getCategory[i]);
+          console.log("ListCat",this.listCategory);
+        } else{
+          console.log("error");
+        }
+          
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
   }
 
   ionViewDidLoad() {
@@ -55,13 +83,15 @@ export class TCategoryDetailPage {
       if (this.getCategory[i].c_no == c) {
         this.categoryDetail = this.getCategory[i];
         console.log(this.categoryDetail.$key);
-        this.key=this.categoryDetail.$key;
+        this.key = this.categoryDetail.$key;
 
       }
-      console.log(c,"123");
+      console.log(c, "123");
     }
     this.categorys.remove(this.key);
   }
+
+
 
 
 
