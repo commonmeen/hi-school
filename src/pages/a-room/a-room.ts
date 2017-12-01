@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireDatabase } from 'angularfire2/database' ;
+import { RoomDetailPage } from '../a-room-detail/a-room-detail';
 /**
  * Generated class for the ARoomPage page.
  *
@@ -14,12 +15,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'a-room.html',
 })
 export class RoomPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ rooms : any[] = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams,public fireBase: AngularFireDatabase) {
+  	fireBase.list('/Room').subscribe(data=>{
+          this.rooms=data;
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ARoomPage');
   }
 
+  moveToRoomDetail(room:any){
+  	this.navCtrl.push(RoomDetailPage,room);
+  }
 }

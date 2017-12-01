@@ -69,6 +69,7 @@ students:any[]=[];
   }
 
   logout(){
+    this.storage.clear();
     this.app.getRootNav().popToRoot();
   }
 }

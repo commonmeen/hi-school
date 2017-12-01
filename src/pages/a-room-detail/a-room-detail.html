@@ -1,5 +1,5 @@
 <!--
-  Generated template for the ARoomPage page.
+  Generated template for the ARoomDetailPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -14,10 +14,8 @@
 
 
 <ion-content padding>
-	<p>ห้องเรียน</p>
-	<ion-list *ngFor="let room of rooms">
-		<ion-item href="#" (click)="moveToRoomDetail(room)">
-			{{room.r_name}} &nbsp; &nbsp; {{room.stdCount}}
-		</ion-item>
-	</ion-list>
+	{{room.r_name}}
+	<hr>
+	รายชื่อนักเรียนในห้อง
+
 </ion-content>

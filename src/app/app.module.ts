@@ -17,6 +17,7 @@ import { AllAdminPage } from "../pages/all-admin/all-admin" ;
 import { AdminAddUserPage } from '../pages/admin-add-user/admin-add-user' ;
 import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teacher';
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
+import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -38,7 +39,8 @@ export const config = {
     AllAdminPage,
     AdminAddUserPage,
     AdminAddTeacherPage,
-    AdminAddStudentPage
+    AdminAddStudentPage,
+RoomDetailPage
 
   ],
   imports: [
@@ -59,7 +61,8 @@ export const config = {
     AllAdminPage,
     AdminAddUserPage,
     AdminAddTeacherPage,
-    AdminAddStudentPage
+    AdminAddStudentPage,
+    RoomDetailPage
 
   ],
   providers: [

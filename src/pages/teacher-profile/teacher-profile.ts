@@ -73,6 +73,7 @@ export class TeacherProfilePage {
   }
 
   logout(){
+    this.storage.clear();
     this.app.getRootNav().popToRoot();
   }
 }
