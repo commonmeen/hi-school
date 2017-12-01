@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
+import { AngularFireModule } from 'angularfire2' ;
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database' ;
+import { Subject } from 'rxjs/Subject';
+
 
 /**
  * Generated class for the TCategoryPage page.
@@ -15,16 +19,22 @@ import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
   templateUrl: 't-category.html',
 })
 export class CategoryPage {
+  subjects : any []=[]
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fireBase: AngularFireDatabase) {
+    fireBase.list('/Subject').subscribe(data=>{
+      this.subjects = data;
+      
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TCategoryPage');
   }
 
-  moveToCategoryDetail(){
-    this.navCtrl.push(TCategoryDetailPage);
+  moveToCategoryDetail(sub){
+    this.navCtrl.push(TCategoryDetailPage,sub);
   }
+
 
 }
