@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add User</ion-title>
+    <ion-title>เพิ่มผู้ใช้</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,16 +16,19 @@
 <ion-content padding>
 	<ion-grid>
 		<ion-row>
+			<ion-col> เลือกประเภทของผู้ใช้งาน</ion-col>
+		</ion-row>
+		<ion-row>
 			<ion-col col6>
 				<ion-card (click)='Teacher()'>
 					<img class='user' src='pic/teacher.png'/>
-					<p class='textUser'> Teacher </p>
+					<p class='textUser'> คุณครู </p>
 				</ion-card>
 			</ion-col>
 			<ion-col col6>
 				<ion-card (click)='Student()'>
 					<img class='user' src='pic/study.png'/>
-					<p class='textUser'> Student </p>
+					<p class='textUser'> นักเรียน </p>
 				</ion-card>
 			</ion-col>
 		</ion-row>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { TeacherProfileDetailPage } from '../teacher-profile-detail/teacher-profile-detail';
 //import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabase } from 'angularfire2/database' ;
@@ -27,7 +27,8 @@ export class TeacherProfilePage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public fireBase: AngularFireDatabase,
-              public storage: Storage,public loadingCtrl: LoadingController) {
+              public storage: Storage,public loadingCtrl: LoadingController,
+              public app : App) {
  //   console.log(navParams.data);
      this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
       this.userId = data;
@@ -72,6 +73,6 @@ export class TeacherProfilePage {
   }
 
   logout(){
-    this.navCtrl.push(HomePage);
+    this.app.getRootNav().popToRoot();
   }
 }

@@ -20,8 +20,10 @@ export class AllTeacherPage {
   tTaskRoot = 'TaskPage'
   tCategoryRoot = 'CategoryPage'
 
+  // aa : string ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  		// this.aa = navParams.data ;
+  		// console.log(this.aa + "aa ngi");
   	}
 }
