@@ -5,6 +5,7 @@ import { TeacherProfileDetailPage } from '../teacher-profile-detail/teacher-prof
 import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the TeacherProfilePage page.
@@ -68,5 +69,9 @@ export class TeacherProfilePage {
       duration: 3000
     });
     loader.present();
+  }
+
+  logout(){
+    this.navCtrl.push(HomePage);
   }
 }

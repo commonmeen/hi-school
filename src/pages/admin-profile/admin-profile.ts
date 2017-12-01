@@ -5,6 +5,7 @@ import { AdminAddUserPage } from '../admin-add-user/admin-add-user' ;
 import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 
 
@@ -65,5 +66,9 @@ students:any[]=[];
 
   calCount(){
     this.count = this.teachers.length + this.students.length ;
+  }
+
+  logout(){
+    this.navCtrl.push(HomePage);
   }
 }
