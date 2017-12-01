@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AdminAddUserPage } from '../admin-add-user/admin-add-user' ;
 //import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabase } from 'angularfire2/database' ;
@@ -31,7 +31,7 @@ students:any[]=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   	public storage: Storage,public loadingCtrl: LoadingController,
-    public fireBase: AngularFireDatabase) {
+    public fireBase: AngularFireDatabase, public app:App) {
   //  this.count = 0 ;
   this.storage.ready().then(() => this.storage.get('admin').then((data) => {
       this.name = data;
@@ -69,6 +69,6 @@ students:any[]=[];
   }
 
   logout(){
-    this.navCtrl.push(HomePage);
+    this.app.getRootNav().popToRoot();
   }
 }

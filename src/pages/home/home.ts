@@ -12,8 +12,8 @@ import { AllAdminPage } from '../all-admin/all-admin' ;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username: string;
-  pass: string;
+  username: string = "";
+  pass: string = "";
   status: number = 0 ;
   teacherList: any[];
   studentList: any[];
@@ -24,8 +24,11 @@ export class HomePage {
     public storage:Storage) {
   	// this.teacherList = angularfire.list('/teacher');
   	// this.studentList = angularfire.list('/student');
-  	// this.parentList = angularfire.list('/parent');
-  	
+  // 	this.parentList = angularfire.list('/parent');
+  // 	this.status = 0 ;
+  //    this.username = "";
+  // this.pass= "";
+
     angularfire.list('/Teacher').subscribe(data=> {
       this.teacherList = data;
       //console.dir(this.teacherList+" lenght = "+this.teacherList.length);
@@ -44,6 +47,7 @@ export class HomePage {
   }
 
   checkUser(){
+    this.status = 0 ;
     console.log(this.adminList.length);
   	for (var x = this.adminList.length - 1; x >= 0; x--) {
       console.log(this.adminList[x].a_no);
