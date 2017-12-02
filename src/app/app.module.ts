@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
 import { MyApp } from './app.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
@@ -19,7 +20,6 @@ import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teache
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 import { DataProvider } from '../providers/data/data';
-import { RoomAddPage } from '../pages/t-room-add/t-room-add' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -40,10 +40,9 @@ export const config = {
     TCategoryAddPage,
     AllAdminPage,
     AdminAddUserPage,
-    AdminAddTeacherPage,
+    AdminAddTeacherPage, 
     AdminAddStudentPage,
-RoomDetailPage,
-RoomAddPage
+RoomDetailPage
 
   ],
   imports: [
@@ -51,7 +50,8 @@ RoomAddPage
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,15 +65,15 @@ RoomAddPage
     AdminAddUserPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
-    RoomDetailPage,
-    RoomAddPage
+    RoomDetailPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    DataProvider,
+    HttpClientModule
   ]
 })
 export class AppModule {}

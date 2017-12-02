@@ -1,4 +1,4 @@
-//import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable  } from 'angularfire2/database' ;
 /*
@@ -14,7 +14,7 @@ export class DataProvider {
   rooms : FirebaseListObservable<any[]>  ;
  	allTeacher : any[] = [];
  	
-  constructor(public angularfire: AngularFireDatabase) {
+  constructor(public angularfire: AngularFireDatabase, public a: HttpClient) {
     console.log('Hello DataProvider Provider');
   }
 	getTeachers(): FirebaseListObservable<any[]> {
