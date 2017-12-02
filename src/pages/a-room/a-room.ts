@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database' ;
 import { RoomDetailPage } from '../a-room-detail/a-room-detail';
+// import { DataProvider } from '../../providers/data/data' ;
+import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the ARoomPage page.
  *
@@ -16,8 +18,10 @@ import { RoomDetailPage } from '../a-room-detail/a-room-detail';
 })
 export class RoomPage {
  rooms : any[] = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,public fireBase: AngularFireDatabase) {
-  	fireBase.list('/Room').subscribe(data=>{
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public fireBase: AngularFireDatabase, 
+    public alertCtrl: AlertController) {
+  	fireBase.list("/Room").subscribe(data=>{
           this.rooms=data;
     });
   }
@@ -29,4 +33,32 @@ export class RoomPage {
   moveToRoomDetail(room:any){
   	this.navCtrl.push(RoomDetailPage,room);
   }
+  
+  addRoom(): void {
+     let newRoom: string = prompt("New Room") ;
+     let rno : number ;
+     let status = 0 ;
+     if (newRoom != '' && newRoom != null) {
+        for (var i = this.rooms.length - 1; i >= 0; i--) {
+          console.log("roomloop");
+          if (newRoom == this.rooms[i].r_name){
+            let alert = this.alertCtrl.create({
+              title: 'Error!',
+              subTitle: newRoom + " มีอยู่ในรายการแล้ว",
+              buttons: ['OK']
+            });
+            alert.present();
+            status = 1 ;
+            console.log()
+            break ;
+          }
+        }
+        if (status == 0) {
+          rno = parseInt(this.rooms[this.rooms.length - 1].r_no);
+          rno += 1;
+          let add:any = {r_name:newRoom,r_no:rno,stdCount:0};
+          this.fireBase.list("/Room").push(add);
+        }
+     }
+   }
 }

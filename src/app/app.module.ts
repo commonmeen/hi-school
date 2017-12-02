@@ -7,6 +7,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabaseModule } from 'angularfire2/database' ;
 import { MyApp } from './app.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher" ;
@@ -18,6 +19,7 @@ import { AdminAddUserPage } from '../pages/admin-add-user/admin-add-user' ;
 import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teacher';
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
+import { DataProvider } from '../providers/data/data';
 
 
 export const config = {
@@ -39,7 +41,7 @@ export const config = {
     TCategoryAddPage,
     AllAdminPage,
     AdminAddUserPage,
-    AdminAddTeacherPage,
+    AdminAddTeacherPage, 
     AdminAddStudentPage,
   RoomDetailPage
 
@@ -49,7 +51,8 @@ export const config = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,6 +73,8 @@ export const config = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider,
+    HttpClientModule
 
   ]
 })
