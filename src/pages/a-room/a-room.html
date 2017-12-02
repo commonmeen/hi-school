@@ -14,10 +14,20 @@
 
 
 <ion-content padding>
-	<p>ห้องเรียน</p>
-	<ion-list *ngFor="let room of rooms">
-		<ion-item href="#" (click)="moveToRoomDetail(room)">
-			{{room.r_name}} &nbsp; &nbsp; {{room.stdCount}}
-		</ion-item>
-	</ion-list>
+	<ion-row>
+		<ion-col>
+			<p>ห้องเรียน</p> 
+		</ion-col>
+		<ion-col class="right">
+			<button ion-button small (click)="addRoom()"> เพิ่มห้องเรียน </button>
+		</ion-col>
+	</ion-row>
+	<ion-row class="listRoom" *ngFor="let room of rooms">
+		<ion-col col-7 (click)="moveToRoomDetail(room)"> 
+			{{room.r_name}}  
+		</ion-col>
+		<ion-col class="right" (click)="moveToRoomDetail(room)">
+			{{room.stdCount}}
+		</ion-col>
+	</ion-row>
 </ion-content>

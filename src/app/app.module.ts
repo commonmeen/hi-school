@@ -18,6 +18,8 @@ import { AdminAddUserPage } from '../pages/admin-add-user/admin-add-user' ;
 import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teacher';
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
+import { DataProvider } from '../providers/data/data';
+import { RoomAddPage } from '../pages/t-room-add/t-room-add' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -40,7 +42,8 @@ export const config = {
     AdminAddUserPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
-RoomDetailPage
+RoomDetailPage,
+RoomAddPage
 
   ],
   imports: [
@@ -62,13 +65,15 @@ RoomDetailPage
     AdminAddUserPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
-    RoomDetailPage
+    RoomDetailPage,
+    RoomAddPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {}
