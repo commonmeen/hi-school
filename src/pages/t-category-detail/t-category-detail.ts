@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 //import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
+import { config } from '../../app/app.module';
+
 
 
 /**
@@ -27,12 +29,18 @@ export class TCategoryDetailPage {
   c_percent: string;
   subject: any;
   key: string;
+  teachs:any[]=[];
+  rooms:any[]=[];
+  roomDetail:any[]=[];
+
+
 
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    public fireBase: AngularFireDatabase) {
+    public fireBase: AngularFireDatabase,
+    ) {
 
     this.subject = this.navParams.data;
     console.log("subNo",this.subject.s_no);
@@ -59,16 +67,26 @@ export class TCategoryDetailPage {
       }
     });
 
+    fireBase.list('/Teach').subscribe(data=>{
+      this.teachs = data;
+      for(let i = this.teachs.length-1; i>=0; i--){
+        if(this.teachs[i].s_no == this.subject.s_no){
+          console.log("ตรงกันแล้วจ้า",this.teachs[i]);
+          fireBase.list('/Room').subscribe(data=>{
+            this.rooms = data;
+            for(let j = this.rooms.length-1 ; j>=0 ; j--){
+              if(this.rooms[j].r_no==this.teachs[i].r_no){
+                console.log("correct");
+                this.roomDetail.push(this.rooms[j]);
+                console.log("room Detial",this.roomDetail);
+              }
+            }
+          })
+        }
+      }
+    })
 
-
-
-
-
-
-
-
-
-
+   
   }
 
   ionViewDidLoad() {
@@ -76,7 +94,7 @@ export class TCategoryDetailPage {
   }
 
   addCategory() {
-    this.navCtrl.push(TCategoryAddPage);
+    this.navCtrl.push(TCategoryAddPage,this.subject.s_no);
   }
   deleteCategory(c) {
     for (var i = this.getCategory.length - 1; i >= 0; i--) {
@@ -90,6 +108,8 @@ export class TCategoryDetailPage {
     }
     this.categorys.remove(this.key);
   }
+  
+  
 
 
 

@@ -19,6 +19,7 @@ import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teache
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 
+
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
   authDomain: "hi-school-8c626.firebaseapp.com",
@@ -40,7 +41,7 @@ export const config = {
     AdminAddUserPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
-RoomDetailPage
+  RoomDetailPage
 
   ],
   imports: [
@@ -68,7 +69,8 @@ RoomDetailPage
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
   ]
 })
 export class AppModule {}
