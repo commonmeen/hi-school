@@ -108,7 +108,11 @@ export class AddToRoomPage {
               this.allTeacher[i].r_no = this.room.r_no ;
               this.data.updateTeacher(key,this.allTeacher[i]);
               console.log("แก้แล้วจ้า",this.allTeacher[i]);
+              let aStd :any = {t_no:this.allTeacher[i].t_no,t_name:this.allTeacher[i].t_name,t_surname:this.allTeacher[i].t_surname,t_status:true};
+              let aIndex = this.studentNoRoom.indexOf(aStd);
               this.wantToAddTeacher.splice(j,1);
+
+              this.studentNoRoom.splice(aIndex,1);
               if (this.teacherInRoom.length != 0) {
                 let index = this.teacherInRoom.indexOf(this.allTeacher[i]);
                 console.log("index", index);
@@ -125,22 +129,26 @@ export class AddToRoomPage {
       }  
     } else if (this.status == 2){
       for (var i = this.allStudent.length - 1; i >= 0; i--) {
-        console.log("เข้า students แล้วจ้า",this.allStudent[i]);
+        console.log("เข้า students แล้วจ้า1",this.allStudent[i]);
         for (var j = this.wantToAddStudent.length -1 ; j>=0 ; j--){
-          console.log("เข้า students แล้วจ้า",this.wantToAddStudent[j]);
+          console.log("เข้า students แล้วจ้า2",this.wantToAddStudent[j]);
           if (this.allStudent[i].std_no == this.wantToAddStudent[j]){
             console.log("ตรงแล้วจ้า",this.allStudent[i]);
               let key = this.allStudent[i].$key ;
               this.allStudent[i].r_no = this.room.r_no ;
               this.data.updateStudent(key,this.allStudent[i]);
               console.log("แก้แล้วจ้า",this.allStudent[i]);
+              let aStd : any = {std_no:this.allStudent[i].std_no,std_name:this.allStudent[i].std_name,std_surname:this.allStudent[i].std_surname,t_status:true}
+              let aIndex = this.studentNoRoom.indexOf(aStd);
               this.wantToAddStudent.splice(j,1);
+              this.studentNoRoom.splice(aIndex,1);
               if (this.studentInRoom.length != 0) {
                 let index = this.studentInRoom.indexOf(this.allStudent[i]);
+                
                 console.log("index", index);
-                if (listCategor[0].c_no == allCategory[i].c_no) {
-                  index = 0;
-                }
+                // if (this.studentInRoom[0].std_no == this.allStudent[i].std_no) {
+                //   index = 0;
+                // }
               if (index > -1) {
                 this.studentInRoom.splice(index, 1);
                 console.log("splice" + this.allStudent[i].t_no + "แล้ว");
