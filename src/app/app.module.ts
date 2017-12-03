@@ -22,6 +22,7 @@ import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 import { DataProvider } from '../providers/data/data';
 import { AddToRoomPage } from '../pages/add-to-room/add-to-room' ;
 
+
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
   authDomain: "hi-school-8c626.firebaseapp.com",
@@ -43,8 +44,8 @@ export const config = {
     AdminAddUserPage,
     AdminAddTeacherPage, 
     AdminAddStudentPage,
-RoomDetailPage,
-AddToRoomPage
+AddToRoomPage,
+  RoomDetailPage
 
   ],
   imports: [
@@ -78,6 +79,7 @@ AddToRoomPage
     DataProvider,
     HttpClientModule,
     AngularFireModule
+
   ]
 })
 export class AppModule {}

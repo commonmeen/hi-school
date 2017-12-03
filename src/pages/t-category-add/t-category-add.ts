@@ -36,6 +36,7 @@ export class TCategoryAddPage {
     public fireBase: AngularFireDatabase,
     private toastCtrl: ToastController) {
 
+    this.s_no = this.navParams.data;
     this.addCategory = this.fireBase.list('/Category');
     this.addForm = this.builder.group({
       'name': ['', Validators.required],
@@ -49,6 +50,10 @@ export class TCategoryAddPage {
     }
     );
 
+    
+
+
+
 
   }
 
@@ -57,7 +62,7 @@ export class TCategoryAddPage {
   }
 
   addCat() {
-    let newCat: any = { c_no: this.cno, c_name: this.name, c_percent: this.percent, s_no: '' }
+    let newCat: any = { c_no: this.cno, c_name: this.name, c_percent: this.percent, s_no: this.s_no }
     this.addCategory.push(newCat);
     this.navCtrl.pop();
 

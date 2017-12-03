@@ -20,11 +20,23 @@ import { Subject } from 'rxjs/Subject';
 })
 export class CategoryPage {
   subjects : any []=[]
+  subjectDetial : any;
+  teachs : any[]=[]
+  teachDetail : any;
+  teacherDetail: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fireBase: AngularFireDatabase) {
+    this.teachDetail = this.navParams.data;
+    console.log("teacher detail",this.teachDetail);
+
     fireBase.list('/Subject').subscribe(data=>{
       this.subjects = data;
-      
+    })
+    fireBase.list('/Teach').subscribe(data=>{
+      this.teachs = data;
+      for(let i = this.teachs.length-1; i>=0 ; i--){
+        
+      }
     })
   }
 
