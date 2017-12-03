@@ -20,6 +20,7 @@ import { AdminAddTeacherPage } from '../pages/admin-add-teacher/admin-add-teache
 import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-student';
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 import { DataProvider } from '../providers/data/data';
+import { AddToRoomPage } from '../pages/add-to-room/add-to-room' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -42,7 +43,8 @@ export const config = {
     AdminAddUserPage,
     AdminAddTeacherPage, 
     AdminAddStudentPage,
-RoomDetailPage
+RoomDetailPage,
+AddToRoomPage
 
   ],
   imports: [
@@ -53,7 +55,7 @@ RoomDetailPage
     IonicStorageModule.forRoot(),
     HttpClientModule
   ],
-  bootstrap: [IonicApp],
+  bootstrap: [IonicApp,MyApp],
   entryComponents: [
     MyApp,
     HomePage,
@@ -65,7 +67,8 @@ RoomDetailPage
     AdminAddUserPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
-    RoomDetailPage
+    RoomDetailPage,
+    AddToRoomPage
 
   ],
   providers: [
@@ -73,7 +76,8 @@ RoomDetailPage
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule
   ]
 })
 export class AppModule {}

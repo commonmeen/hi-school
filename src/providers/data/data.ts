@@ -31,4 +31,14 @@ export class DataProvider {
     this.rooms = this.angularfire.list("/Room") ;
     return this.rooms ;
   }
+
+  updateTeacher(key:any,value:any){
+    this.getTeachers() ;
+    this.teachers.update(key,value);
+  }
+
+  updateStudent(key:any,value:any){
+    this.getStudents() ;
+    this.students.update(key,value);
+  }
 }

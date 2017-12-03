@@ -21,8 +21,8 @@
 			</ion-col>
 			<ion-col class="right">
 				<button ion-button small *ngIf="teacher2" style="background-color:#B3B2B2"> เพิ่มครู </button>
-				<button ion-button small *ngIf="!teacher2"> เพิ่มครู </button>
-				<button ion-button small> เพิ่มนักเรียน </button>
+				<button ion-button small *ngIf="!teacher2" (click)="addTeacherToRoom()"> เพิ่มครู </button>
+				<button ion-button small (click)="addStudentToRoom()"> เพิ่มนักเรียน </button>
 			</ion-col>
 		</ion-row>
 		<ion-row>
