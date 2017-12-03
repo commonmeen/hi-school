@@ -79,6 +79,7 @@ export class TeacherProfilePage {
 
   logout() {
     this.storage.clear();
+    console.log(this.app.getRootNav());
     this.app.getRootNav().popToRoot();
   }
 }

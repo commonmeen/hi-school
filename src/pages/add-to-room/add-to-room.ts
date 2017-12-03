@@ -37,7 +37,7 @@ export class AddToRoomPage {
     this.studentInRoom = this.params.studentInRoom ;
     this.teacherInRoom = this.params.teacherInRoom ;
     this.room = this.params.room ;
-
+    this.studentNoRoom = [] ;
     if (this.studentInRoom){
     this.studentCount = this.studentInRoom.length ;
   }
@@ -49,9 +49,9 @@ export class AddToRoomPage {
       for (var i = this.allStudent.length - 1; i >= 0; i--) {
       if(this.allStudent[i].r_no == ""){
       //	console.log("re wongwong");
-        let stdNoRoom : any = {std_no:this.allStudent[i].std_no,std_name:this.allStudent[i].std_name,std_surname:this.allStudent[i].std_surname,t_status:false}
-        this.studentNoRoom.push(this.allStudent[i]);
-        console.log(this.studentNoRoom);
+        let stdNoRoom : any = {std_no:this.allStudent[i].std_no,std_name:this.allStudent[i].std_name,std_surname:this.allStudent[i].std_surname,std_status:false}
+        this.studentNoRoom.push(stdNoRoom);
+        console.log("NoRoom",this.studentNoRoom);
       } else if (this.allStudent[i].r_no == null){
       	console.log("re null");
        //this.studentThisRoom.push(this.allStudent[i]);
@@ -81,19 +81,23 @@ export class AddToRoomPage {
       if (t){
         this.teacherCount++ ;
         this.wantToAddTeacher.push(no);
+        console.log("tikT",this.wantToAddTeacher);
       } else {
         this.teacherCount-- ;
-        this.wantToAddTeacher.indexOf(no);
-        this.wantToAddTeacher.splice(no);
+        let i = this.wantToAddTeacher.indexOf(no);
+        this.wantToAddTeacher.splice(i,1);
+        console.log("tikT",this.wantToAddTeacher);
       }
   	}  else if (this.status == 2){
       if (t){
         this.studentCount++ ;
         this.wantToAddStudent.push(no);
+        console.log("tikS",this.wantToAddStudent);
       } else {
         this.studentCount-- ;
-        this.wantToAddStudent.indexOf(no);
-        this.wantToAddStudent.splice(no);
+        let i = this.wantToAddStudent.indexOf(no);
+        this.wantToAddStudent.splice(i,1);
+        console.log("tikS",this.wantToAddStudent);
       }
   	}
   }
@@ -108,22 +112,7 @@ export class AddToRoomPage {
               this.allTeacher[i].r_no = this.room.r_no ;
               this.data.updateTeacher(key,this.allTeacher[i]);
               console.log("แก้แล้วจ้า",this.allTeacher[i]);
-              let aStd :any = {t_no:this.allTeacher[i].t_no,t_name:this.allTeacher[i].t_name,t_surname:this.allTeacher[i].t_surname,t_status:true};
-              let aIndex = this.studentNoRoom.indexOf(aStd);
               this.wantToAddTeacher.splice(j,1);
-
-              this.studentNoRoom.splice(aIndex,1);
-              if (this.teacherInRoom.length != 0) {
-                let index = this.teacherInRoom.indexOf(this.allTeacher[i]);
-                console.log("index", index);
-                // if (listCategor[0].c_no == allCategory[i].c_no) {
-                //   index = 0;
-                // }
-              if (index > -1) {
-                this.teacherInRoom.splice(index, 1);
-                console.log("splice" + this.allTeacher[i].t_no + "แล้ว");
-              }
-            }
           }
         }
       }  
@@ -134,21 +123,21 @@ export class AddToRoomPage {
           console.log("เข้า students แล้วจ้า2",this.wantToAddStudent[j]);
           if (this.allStudent[i].std_no == this.wantToAddStudent[j]){
             console.log("ตรงแล้วจ้า",this.allStudent[i]);
-              let key = this.allStudent[i].$key ;
-              this.allStudent[i].r_no = this.room.r_no ;
-              this.data.updateStudent(key,this.allStudent[i]);
-              console.log("แก้แล้วจ้า",this.allStudent[i]);
-              let aStd : any = {std_no:this.allStudent[i].std_no,std_name:this.allStudent[i].std_name,std_surname:this.allStudent[i].std_surname,t_status:true}
-              let aIndex = this.studentNoRoom.indexOf(aStd);
-              this.wantToAddStudent.splice(j,1);
-              this.studentNoRoom.splice(aIndex,1);
-              if (this.studentInRoom.length != 0) {
-                let index = this.studentInRoom.indexOf(this.allStudent[i]);
-                
-                console.log("index", index);
-                // if (this.studentInRoom[0].std_no == this.allStudent[i].std_no) {
-                //   index = 0;
-                // }
+            let key = this.allStudent[i].$key ;
+            this.allStudent[i].r_no = this.room.r_no ;
+            this.data.updateStudent(key,this.allStudent[i]);
+            console.log("แก้แล้วจ้า",this.allStudent[i]);
+            let aStd : any = {std_no:this.allStudent[i].std_no,std_name:this.allStudent[i].std_name,std_surname:this.allStudent[i].std_surname,t_status:true}
+            let aIndex = this.studentNoRoom.indexOf(aStd);
+            this.wantToAddStudent.splice(j,1);
+            this.studentNoRoom.splice(aIndex,1);
+            if (this.studentInRoom.length != 0) {
+              let index = this.studentInRoom.indexOf(this.allStudent[i]);
+
+              console.log("index", index);
+              // if (this.studentInRoom[0].std_no == this.allStudent[i].std_no) {
+                // index = 0;
+              // }
               if (index > -1) {
                 this.studentInRoom.splice(index, 1);
                 console.log("splice" + this.allStudent[i].t_no + "แล้ว");
