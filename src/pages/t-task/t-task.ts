@@ -26,8 +26,7 @@ export class TaskPage {
               public fireBase:AngularFireDatabase) {
   
     fireBase.list('/Task').subscribe((data)=>
-    this.tasks=data            
-  )
+    this.tasks=data);
   }
 
   ionViewDidLoad() {
