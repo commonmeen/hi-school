@@ -20,7 +20,7 @@
   
 
   <ion-list >
-    <ion-item *ngFor="let sub of subjects"  class="listCategory">
+    <ion-item *ngFor="let sub of subjectDetial"  class="listCategory">
       <ion-label no-lines><button ion-button outline (click)="moveToCategoryDetail(sub)">{{sub.s_name}}</button></ion-label>
       <ion-label class="credit">{{sub.credit}} หน่วยกิต</ion-label>
     </ion-item>

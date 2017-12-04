@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
 import { config } from '../../app/app.module';
+import { DataProvider } from '../../providers/data/data';
 
 
 
@@ -40,32 +41,16 @@ export class TCategoryDetailPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public fireBase: AngularFireDatabase,
+    public provideData: DataProvider
     ) {
 
     this.subject = this.navParams.data;
-    console.log("subNo",this.subject.s_no);
-    this.categorys = fireBase.list('/Category');
-    fireBase.list('/Category').subscribe(data => {
-      this.getCategory = data;
-      console.log("test", this.getCategory);
-      console.log("123132", this.getCategory);
-      this.subject = this.navParams.data;
-      console.log("subject", this.subject);
+    this.listCategory = this.provideData.getCatBySub(this.subject.s_no);
 
-      for (var i = this.getCategory.length - 1; i >= 0; i--) {
-        console.log("loop")
-        console.log("cat_s_no",this.getCategory[i].s_no);
-        console.log("subNo",this.subject.s_no);
-        if (this.getCategory[i].s_no == this.subject.s_no) {
-          console.log("yes");
-          this.listCategory.push(this.getCategory[i]);
-          console.log("ListCat",this.listCategory);
-        } else{
-          console.log("error");
-        }
-          
-      }
+    provideData.getCategory().subscribe(data=>{
+      this.getCategory = data;
     });
+    
 
     fireBase.list('/Teach').subscribe(data=>{
       this.teachs = data;
@@ -94,20 +79,40 @@ export class TCategoryDetailPage {
   }
 
   addCategory() {
-    this.navCtrl.push(TCategoryAddPage,this.subject.s_no);
+    let a :any = {s_no:this.subject.s_no,list:{c_name:'',c_no:'',c_percent:''}};
+    this.navCtrl.push(TCategoryAddPage,a);
   }
+
+  editCategory(listCategory){
+    let listForPush :any = {list:listCategory, s_no:this.subject.s_no};
+    this.navCtrl.push(TCategoryAddPage,listForPush);
+  }
+
   deleteCategory(c) {
+    
     for (var i = this.getCategory.length - 1; i >= 0; i--) {
       if (this.getCategory[i].c_no == c) {
         this.categoryDetail = this.getCategory[i];
-        console.log(this.categoryDetail.$key);
+        console.log("มีนหลับไปแล้ว",this.getCategory[i]);
+        console.log("มมมม",this.listCategory);
+        console.log("ttttt",this.categoryDetail);
         this.key = this.categoryDetail.$key;
-
+        for  (var j = this.listCategory.length - 1; j >= 0; j--){
+          if(this.listCategory[j].c_no==this.categoryDetail.c_no){
+            this.listCategory.splice(j,1);
+          }
+        }
+        // let index = this.listCategory.indexOf(this.getCategory[i]);
+        // console.log("in จ้าา",index);
+        // this.listCategory.splice(index,1);
       }
-      console.log(c, "123");
+      
     }
-    this.categorys.remove(this.key);
+    this.provideData.deleteCategory(this.key);
+    
   }
+
+  
   
   
 

@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ToastController } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 
 
 /**
@@ -20,24 +21,28 @@ import { ToastController } from 'ionic-angular';
 })
 export class TCategoryAddPage {
   addForm: FormGroup;
-  addCategory: FirebaseListObservable<any[]>;
+  connectFirebase: FirebaseListObservable<any[]>;
+  categoryDetail:any;
   c_no: number;
   name: string;
   percent: number;
   s_no: number;
   getc_no: any[] = [];
-  cno: number;
-
+  cno: number ;
+  params : any ;
 
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public builder: FormBuilder,
     public fireBase: AngularFireDatabase,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    public provideData: DataProvider) {
 
-    this.s_no = this.navParams.data;
-    this.addCategory = this.fireBase.list('/Category');
+      this.params = this.navParams.data ;
+    this.s_no = this.params.s_no ;
+    console.log(this.s_no);
+    this.connectFirebase = this.fireBase.list('/Category');
     this.addForm = this.builder.group({
       'name': ['', Validators.required],
       'percent': ['', Validators.required]
@@ -50,6 +55,8 @@ export class TCategoryAddPage {
     }
     );
 
+    this.categoryDetail = this.params.list ;
+    console.log("hellooooooooooooooooooooooooooooooooooooooooooooooo",this.categoryDetail);
     
 
 
@@ -62,17 +69,38 @@ export class TCategoryAddPage {
   }
 
   addCat() {
-    let newCat: any = { c_no: this.cno, c_name: this.name, c_percent: this.percent, s_no: this.s_no }
-    this.addCategory.push(newCat);
-    this.navCtrl.pop();
+    
+    if(this.categoryDetail.$key ==null ){
+      let newCat: any = { c_no: this.cno, c_name: this.name, c_percent: this.percent, s_no: this.s_no }
+      this.connectFirebase.push(newCat);
+      this.navCtrl.pop();  
 
-    let toast = this.toastCtrl.create({
-      message: 'เพิ่มหมวดหมู่สำเร็จ!',
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
+      let toast = this.toastCtrl.create({
+        message: 'เพิ่มหมวดหมู่สำเร็จ!',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+  
+    }else {
+      console.log("keyyyyyyyyyyyyyyyyyyyyy",this.categoryDetail.$key);
+      let newCat: any = { c_no: this.categoryDetail.c_no, c_name: this.name, c_percent: this.percent, s_no: this.s_no }
+      console.log("นิววววววว",newCat);
+      let k = this.categoryDetail.$key ;
+      this.provideData.updateCategory(k,newCat);
+      this.navCtrl.pop();  
 
+      let toast = this.toastCtrl.create({
+        message: 'แก้ไขหมวดหมู่สำเร็จ!',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    }
+    
+
+
+    
   }
 
 

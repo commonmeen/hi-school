@@ -19,11 +19,11 @@
   <form [formGroup]="addForm" (ngSubmit)="addCat()">
     <ion-item>
       <ion-label>ชื่อหมวดหมู่</ion-label>
-      <ion-input type="text" formControlName="name" [(ngModel)]="name"></ion-input>
+      <ion-input type="text" formControlName="name" [(ngModel)]="name" value={{categoryDetail.c_name}}></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>เปอร์เซ็นต์</ion-label>
-      <ion-input type="number" formControlName="percent" [(ngModel)]="percent"></ion-input>
+      <ion-input type="number" formControlName="percent" [(ngModel)]="percent" value={{categoryDetail.c_percent}}></ion-input>
     </ion-item>
     <ion-row>
       <ion-col><button ion-button type="submit" >เพิ่ม</button></ion-col>
