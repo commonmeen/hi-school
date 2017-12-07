@@ -70,6 +70,6 @@ students:any[]=[];
 
   logout(){
     this.storage.clear();
-    this.app.getRootNav().popToRoot();
+    this.app.getRootNavs().popToRoot(HomePage);
   }
 }
