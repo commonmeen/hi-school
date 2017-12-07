@@ -48,6 +48,8 @@ export class AddToRoomPage {
     console.log("sIn",this.studentInRoom);
     if (this.teacherCount == 1){
       this.teacherInRoom.splice(1,1);
+    } else if (this.teacherCount == 0){
+      this.teacherInRoom.splice(0,2);
     }
     if (this.status == 2){
       data.getStudents().subscribe(data=>{
@@ -102,9 +104,10 @@ export class AddToRoomPage {
             }
           }
         }
-        console.log("InRoom again",this.teacherInRoom);
+        
       }
     }
+    console.log("InRoom again",this.teacherInRoom);
   }
 
   ionViewDidLoad() {

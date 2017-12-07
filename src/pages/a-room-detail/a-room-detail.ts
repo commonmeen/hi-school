@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data' ;
 import { AddToRoomPage } from '../add-to-room/add-to-room' ;
 import { Events } from 'ionic-angular';
+import { ModalController} from 'ionic-angular';
 /**
  * Generated class for the ARoomDetailPage page.
  *
@@ -28,7 +29,7 @@ export class RoomDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fireBase: AngularFireDatabase,public loadingCtrl: LoadingController,
-    public data:DataProvider,public events:Events) {
+    public data:DataProvider,public events:Events,public modalCtrl: ModalController) {
   	this.room = navParams.data ;
     this.studentThisRoom = this.data.getStudentsByRoom(this.room.r_no);
   	//console.log(this.room);
@@ -85,6 +86,12 @@ export class RoomDetailPage {
 
   addStudentToRoom(){
     let a : any = {status:2 , studentInRoom:this.studentThisRoom,room:this.room};
-    this.navCtrl.push(AddToRoomPage,a);
+    let modal = this.modalCtrl.create(AddToRoomPage,a);
+    modal.present();
+    modal.onDidDismiss(data => {
+      this.studentThisRoom = this.data.getStudentsByRoom(this.room.r_no);
+    });
+
+    //this.navCtrl.push(AddToRoomPage,a);
   }
 } //

@@ -42,7 +42,7 @@
   </ion-item>
 
   <ion-item *ngFor="let item of teacherInRoom">
-    <ion-label *ngIf="item.t_no!=null">{{item.t_no}} {{item.t_name}} {{item.t_surname}}</ion-label>
+    <ion-label *ngIf="item">{{item.t_no}} {{item.t_name}} {{item.t_surname}}</ion-label>
     <ion-checkbox *ngIf="item.t_no&&teacherCount>=2&&item.t_status==true" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
     <ion-checkbox *ngIf="item.t_no&&teacherCount<2" disabled="false" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
      <ion-checkbox *ngIf="item.t_no&&teacherCount>=2&&item.t_status==false" disabled="true" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
