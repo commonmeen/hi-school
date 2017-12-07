@@ -8,6 +8,7 @@ import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CategoryPage } from '../t-category/t-category';
 
+
 /**
  * Generated class for the TeacherProfilePage page.
  *
@@ -28,7 +29,8 @@ export class TeacherProfilePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public fireBase: AngularFireDatabase,
-    public storage: Storage, public loadingCtrl: LoadingController,
+    public storage: Storage, 
+    public loadingCtrl: LoadingController,
     public app: App) {
     //   console.log(navParams.data);
     this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
@@ -80,6 +82,11 @@ export class TeacherProfilePage {
   logout() {
     this.storage.clear();
     console.log(this.app.getRootNav());
-    this.app.getRootNav().popToRoot();
+    //this.app.getRootNav().popToRoot();
+    this.app.getRootNav().setRoot(HomePage);
+    //this.navCtrl.push(HomePage);
+    //this.app.getRootNavs[0].popToRoot();
+    //this.app.getRootNav().popToRoot();
+
   }
 }

@@ -6,13 +6,30 @@
 -->
 <ion-header>
 
-  <ion-navbar >
-    <ion-title ><img src="pic/logo.png" class="logo"></ion-title>
+  <ion-navbar>
+    <ion-title>
+      <img src="pic/logo.png" class="logo">
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  {{taskDetail.task_name}}
+  <ion-item>
+    <ion-label>เลือกวิชา</ion-label>
+    <ion-select [(ngModel)]="subjectInput" (ionChange)="showRoom()">
+      <ion-option *ngFor="let sub of subjectDetail"  >{{sub.s_name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-label *ngIf="subjectInput" > 
+    <ion-item>
+        <ion-label>เลือกห้องเรียน</ion-label>
+        <ion-select [(ngModel)]="roomInput" (ionChange)="showTask()">
+          <ion-option *ngFor="let room of roomDetail"  >{{room.r_name}}</ion-option>
+        </ion-select>
+      </ion-item>
+  </ion-label>
+
 </ion-content>

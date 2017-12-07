@@ -5,7 +5,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
 import { config } from '../../app/app.module';
 import { DataProvider } from '../../providers/data/data';
-
+import { Storage } from '@ionic/storage';
+import { ModalController} from 'ionic-angular';
 
 
 /**
@@ -30,9 +31,12 @@ export class TCategoryDetailPage {
   c_percent: string;
   subject: any;
   key: string;
-  teachs:any[]=[];
-  rooms:any[]=[];
-  roomDetail:any[]=[];
+  teachs: any[] = [];
+  rooms: any[] = [];
+  roomDetail: any[] = [];
+  totalPercent: number = 0;
+  balancePercent: number = 100-this.totalPercent;
+
 
 
 
@@ -41,29 +45,31 @@ export class TCategoryDetailPage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public fireBase: AngularFireDatabase,
-    public provideData: DataProvider
-    ) {
+    public provideData: DataProvider,
+    public storage: Storage,
+    public modalCtrl: ModalController
+  ) {
 
     this.subject = this.navParams.data;
     this.listCategory = this.provideData.getCatBySub(this.subject.s_no);
 
-    provideData.getCategory().subscribe(data=>{
+    provideData.getCategory().subscribe(data => {
       this.getCategory = data;
     });
-    
 
-    fireBase.list('/Teach').subscribe(data=>{
+
+    fireBase.list('/Teach').subscribe(data => {
       this.teachs = data;
-      for(let i = this.teachs.length-1; i>=0; i--){
-        if(this.teachs[i].s_no == this.subject.s_no){
-          console.log("ตรงกันแล้วจ้า",this.teachs[i]);
-          fireBase.list('/Room').subscribe(data=>{
+      for (let i = this.teachs.length - 1; i >= 0; i--) {
+        if (this.teachs[i].s_no == this.subject.s_no) {
+          console.log("ตรงกันแล้วจ้า", this.teachs[i]);
+          fireBase.list('/Room').subscribe(data => {
             this.rooms = data;
-            for(let j = this.rooms.length-1 ; j>=0 ; j--){
-              if(this.rooms[j].r_no==this.teachs[i].r_no){
+            for (let j = this.rooms.length - 1; j >= 0; j--) {
+              if (this.rooms[j].r_no == this.teachs[i].r_no) {
                 console.log("correct");
                 this.roomDetail.push(this.rooms[j]);
-                console.log("room Detial",this.roomDetail);
+                console.log("room Detial", this.roomDetail);
               }
             }
           })
@@ -72,6 +78,21 @@ export class TCategoryDetailPage {
     })
 
    
+
+    console.log("Toalllllllll",this.listCategory);
+    
+    //this.totalPercent = provideData.getPercent(this.subject.s_no);
+    console.log("เข้าแล้วววววววววววววววววว",this.totalPercent);
+
+    setTimeout(() => {
+      for (let k = this.listCategory.length - 1; k >= 0; k--) {
+        this.totalPercent += parseInt(this.listCategory[k].c_percent);
+        console.log("Total Percent", this.totalPercent);
+      }
+      this.balancePercent = 100-this.totalPercent;
+    }, 3000);
+    
+
   }
 
   ionViewDidLoad() {
@@ -79,42 +100,56 @@ export class TCategoryDetailPage {
   }
 
   addCategory() {
-    let a :any = {s_no:this.subject.s_no,list:{c_name:'',c_no:'',c_percent:''}};
-    this.navCtrl.push(TCategoryAddPage,a);
+    let a: any = { s_no: this.subject.s_no, list: { c_name: '', c_no: '', c_percent: '' }, listCategory: this.listCategory};
+    let modal = this.modalCtrl.create(TCategoryAddPage,a);
+    modal.present();
+    modal.onDidDismiss(data => {
+      this.totalPercent=0;
+      this.balancePercent=0;
+      setTimeout(() => {
+        for (let k = this.listCategory.length - 1; k >= 0; k--) {
+          this.totalPercent += parseInt(this.listCategory[k].c_percent);
+          console.log("Total Percent", this.totalPercent);
+        }
+        this.balancePercent = 100-this.totalPercent;
+      }, 3000);
+    })
   }
 
-  editCategory(listCategory){
-    let listForPush :any = {list:listCategory, s_no:this.subject.s_no};
-    this.navCtrl.push(TCategoryAddPage,listForPush);
+  editCategory(listCategory) {
+    let listForPush: any = { list: listCategory, s_no: this.subject.s_no };
+    this.navCtrl.push(TCategoryAddPage, listForPush);
   }
 
   deleteCategory(c) {
-    
+
     for (var i = this.getCategory.length - 1; i >= 0; i--) {
       if (this.getCategory[i].c_no == c) {
         this.categoryDetail = this.getCategory[i];
-        console.log("มีนหลับไปแล้ว",this.getCategory[i]);
-        console.log("มมมม",this.listCategory);
-        console.log("ttttt",this.categoryDetail);
+        console.log("มีนหลับไปแล้ว", this.getCategory[i]);
+        console.log("มมมม", this.listCategory);
+        console.log("ttttt", this.categoryDetail);
         this.key = this.categoryDetail.$key;
-        for  (var j = this.listCategory.length - 1; j >= 0; j--){
-          if(this.listCategory[j].c_no==this.categoryDetail.c_no){
-            this.listCategory.splice(j,1);
+        for (var j = this.listCategory.length - 1; j >= 0; j--) {
+          if (this.listCategory[j].c_no == this.categoryDetail.c_no) {
+            this.listCategory.splice(j, 1);
           }
         }
         // let index = this.listCategory.indexOf(this.getCategory[i]);
         // console.log("in จ้าา",index);
         // this.listCategory.splice(index,1);
       }
-      
+
     }
     this.provideData.deleteCategory(this.key);
-    
+
   }
 
   
-  
-  
+
+
+
+
 
 
 

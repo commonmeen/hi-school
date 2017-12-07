@@ -25,10 +25,13 @@
       <ion-label>เปอร์เซ็นต์</ion-label>
       <ion-input type="number" formControlName="percent" [(ngModel)]="percent" value={{categoryDetail.c_percent}}></ion-input>
     </ion-item>
-    <ion-row>
-      <ion-col><button ion-button type="submit" >เพิ่ม</button></ion-col>
-      <ion-col><button ion-button  navPop >ยกเลิก</button></ion-col>
-    </ion-row>
+    <ion-grid>
+      <ion-row class="enterButton">
+        <ion-col col-6><button ion-button type="submit" >ตกลง</button></ion-col>
+        <ion-col col-6><button ion-button  navPop >ยกเลิก</button></ion-col>
+      </ion-row>
+    </ion-grid>
+    
     
     
   </form>
