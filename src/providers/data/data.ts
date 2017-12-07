@@ -76,6 +76,11 @@ export class DataProvider {
     this.categorys.update(key, value);
   }
 
+  updateRoom(key: any, value: any){
+    this.getRoom();
+    this.rooms.update(key,value);
+  }
+
   getCatBySub(subNo: string): any {
     let allCategory: any[] = [];
     let listCategory: any[] = [];
@@ -112,6 +117,46 @@ export class DataProvider {
   deleteCategory(key) {
     this.getCategory();
     this.categorys.remove(key);
+  }
+
+  getStudentsByRoom(roomNo :string):any{
+    console.log("เข้า Provider");
+    let allStudent :any[] = [] ;
+    let studentThisRoom : any[] = [] ;
+    this.getStudents().subscribe(data=>{
+      allStudent = data;
+     // console.log("lazy");
+    });
+    for (var i = allStudent.length - 1; i >= 0; i--) {
+   //   console.log("Loop in roomdetail");
+      if(allStudent[i].r_no == roomNo){
+        // if (studentThisRoom.length != 0) {
+        //   let index = studentThisRoom.indexOf(allStudent[i]);
+        //   console.log("index detail", index);
+        //   // if (this.studentInRoom[0].std_no == this.allStudent[i].std_no) {
+        //   //   index = 0;
+        //   // }
+        //   if (index > -1) {
+        //     studentThisRoom.splice(index, 1);
+        //     console.log("splice" + allStudent[i].t_no + "แล้ว");
+        //     }
+        //   }
+        studentThisRoom.push(allStudent[i]);
+      }
+      else {
+        if (studentThisRoom.length != 0) {
+        let index = studentThisRoom.indexOf(allStudent[i]);
+          if (index > -1) {
+            studentThisRoom.splice(index, 1);
+            console.log("splice" + allStudent[i].t_no + "แล้ว");
+          }
+        }
+
+      }
+    }
+    console.log("return from providers");
+    return studentThisRoom ;
+
   }
 
 

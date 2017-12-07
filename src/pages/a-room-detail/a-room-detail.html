@@ -20,7 +20,7 @@
 				<ion-label class="topic">{{room.r_name}}</ion-label>
 			</ion-col>
 			<ion-col class="right">
-				<button ion-button small *ngIf="teacher2" style="background-color:#B3B2B2"> เพิ่มครู </button>
+				<button ion-button small *ngIf="teacher2" style="background-color:#B3B2B2" (click)="addTeacherToRoom()"> เปลี่ยนครู </button>
 				<button ion-button small *ngIf="!teacher2" (click)="addTeacherToRoom()"> เพิ่มครู </button>
 				<button ion-button small (click)="addStudentToRoom()"> เพิ่มนักเรียน </button>
 			</ion-col>

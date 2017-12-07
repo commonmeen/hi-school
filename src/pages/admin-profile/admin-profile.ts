@@ -70,6 +70,15 @@ students:any[]=[];
 
   logout(){
     this.storage.clear();
-    this.app.getRootNav().popToRoot();
+    // this.app.getRootNav().setRoot(HomePage);
+    // this.app.getRootNav().pop();
+    // this.app.unregisterRootNav(this.app.getRootNavById('n5'));
+    // console.log(this.app.getRootNavs())
+    this.app.getRootNav().setRoot(HomePage);
+    this.app.getRootNav().popToRoot() ;
+    // console.log(this.app.getRootNav().popToRoot(HomePage));
   }
 }
+// private get _navCtrl(): NavController {
+//         return this._app.getRootNav();
+//     }
