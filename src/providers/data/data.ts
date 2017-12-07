@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
+
 /*
   Generated class for the DataProvider provider.
 
@@ -76,9 +77,9 @@ export class DataProvider {
     this.categorys.update(key, value);
   }
 
-  updateRoom(key: any, value: any){
+  updateRoom(key: any, value: any) {
     this.getRoom();
-    this.rooms.update(key,value);
+    this.rooms.update(key, value);
   }
 
   getCatBySub(subNo: string): any {
@@ -119,17 +120,17 @@ export class DataProvider {
     this.categorys.remove(key);
   }
 
-  getStudentsByRoom(roomNo :string):any{
+  getStudentsByRoom(roomNo: string): any {
     console.log("เข้า Provider");
-    let allStudent :any[] = [] ;
-    let studentThisRoom : any[] = [] ;
-    this.getStudents().subscribe(data=>{
+    let allStudent: any[] = [];
+    let studentThisRoom: any[] = [];
+    this.getStudents().subscribe(data => {
       allStudent = data;
-     // console.log("lazy");
+      // console.log("lazy");
     });
     for (var i = allStudent.length - 1; i >= 0; i--) {
-   //   console.log("Loop in roomdetail");
-      if(allStudent[i].r_no == roomNo){
+      //   console.log("Loop in roomdetail");
+      if (allStudent[i].r_no == roomNo) {
         // if (studentThisRoom.length != 0) {
         //   let index = studentThisRoom.indexOf(allStudent[i]);
         //   console.log("index detail", index);
@@ -145,7 +146,7 @@ export class DataProvider {
       }
       else {
         if (studentThisRoom.length != 0) {
-        let index = studentThisRoom.indexOf(allStudent[i]);
+          let index = studentThisRoom.indexOf(allStudent[i]);
           if (index > -1) {
             studentThisRoom.splice(index, 1);
             console.log("splice" + allStudent[i].t_no + "แล้ว");
@@ -155,7 +156,7 @@ export class DataProvider {
       }
     }
     console.log("return from providers");
-    return studentThisRoom ;
+    return studentThisRoom;
 
   }
 
@@ -233,8 +234,8 @@ export class DataProvider {
     let subjectDetail: any[] = [];
     let getTeach: any[] = [];
     let teachDetail: any[] = [];
-    let getRoom : any[]=[];
-    let roomDetail: any[]=[];
+    let getRoom: any[] = [];
+    let roomDetail: any[] = [];
     this.getSubject().subscribe(data => {
       getSubject = data;
     })
@@ -242,7 +243,7 @@ export class DataProvider {
       getTeach = data;
       console.log("GET TEACH", getTeach);
     })
-    this.getRoom().subscribe(data=>{
+    this.getRoom().subscribe(data => {
       getRoom = data;
     })
 
@@ -251,15 +252,15 @@ export class DataProvider {
         subjectDetail.push(getSubject[i]);
         console.log("เท่ากันแล้ว", subjectDetail);
         for (let j = getTeach.length - 1; j >= 0; j--) {
-          if (getTeach[j].s_no == getSubject[i].s_no){
+          if (getTeach[j].s_no == getSubject[i].s_no) {
             teachDetail.push(getTeach[j]);
-          console.log("เท่ากันอีกแล้ว", teachDetail);
-          for(let k = getRoom.length-1 ; k>=0 ; k--){
-            if(getRoom[k].r_no == getTeach[j].r_no){
-              roomDetail.push(getRoom[k]);
-              console.log("เท่ากันอีกแล้วอ่า อะไรเนี่ย",roomDetail);
+            console.log("เท่ากันอีกแล้ว", teachDetail);
+            for (let k = getRoom.length - 1; k >= 0; k--) {
+              if (getRoom[k].r_no == getTeach[j].r_no) {
+                roomDetail.push(getRoom[k]);
+                console.log("เท่ากันอีกแล้วอ่า อะไรเนี่ย", roomDetail);
+              }
             }
-          }
           }
         }
       }
@@ -269,32 +270,40 @@ export class DataProvider {
   }
 
 
-  findTaskByRoom(roomNo):any[]{
-    let getTask:any[]=[];
-    let getRoom : any;
-    let roomDetail : any;
-    let taskDetail: any[]=[]
-    this.getTask().subscribe(data=>{
-      getTask = data;
-    })
-    this.getRoom().subscribe(data=>{
+  findTaskByRoom(roomName): any[] {
+    let getTask: any[] = [];
+    let getRoom: any;
+    let roomDetail: any;
+    let taskDetail: any[] = [];
+
+    this.getRoom().subscribe(data => {
       getRoom = data;
-    })
+    });
 
-    for(let i = getRoom.length-1 ; i>=0 ; i--){
-      if(getRoom[i].r_name == roomNo ){
-        roomDetail = roomDetail[i];
-        console.log("ROOM NO",roomDetail);
+    for (let i = getRoom.length - 1; i >= 0; i--) {
+      console.log("เข้าสิ", roomName);
+      if (getRoom[i].r_name == roomName) {
+        roomDetail = getRoom[i];
+        console.log("ROOM NO", roomDetail);
+
       }
     }
 
-    for(let j = getTask.length-1 ; j>=0 ; j--){
-      if(getTask[j].r_no == roomDetail.r_no){
-        taskDetail.push(getTask[j]);
-        console.log("เสร็จแล้วจ้าาาาาา",taskDetail);
+    this.getTask().subscribe(data => {
+      getTask = data;
+      console.log('เหี้ยยยยยยยย  ', getTask);
+
+      console.log("เล้ง", getTask.length);
+      for (let j = getTask.length - 1; j >= 0; j--) {
+        console.log("เข้าสิจ๊ะ");
+        if (getTask[j].r_no == roomDetail.r_no) {
+          taskDetail.push(getTask[j]);
+          console.log("เสร็จแล้วจ้าาาาาา", taskDetail);
+        }
       }
-    }
-    
+    });
+
+
     return taskDetail;
   }
 

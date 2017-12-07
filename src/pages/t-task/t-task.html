@@ -32,4 +32,12 @@
       </ion-item>
   </ion-label>
 
+  <!-- <ion-label *ngFor="let task of taskDetail">
+    {{task.task_name}}
+  </ion-label> -->
+  <ion-item  *ngFor="let task of task">
+      {{task.task_name}}
+  </ion-item>
+
+
 </ion-content>

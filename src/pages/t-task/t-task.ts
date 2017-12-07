@@ -30,6 +30,7 @@ export class TaskPage {
   subjectInput:any;
   roomDetail:any[]=[];
   roomInput:any;
+  task:any[]=[];
 
 
   constructor(public navCtrl: NavController,
@@ -75,7 +76,7 @@ export class TaskPage {
     this.roomDetail = this.provideData.findRoomBySubject(this.subjectInput);
   }
   showTask(){
-    this.taskDetail = this.provideData.findRoomBySubject(this.roomInput);
+    this.task = this.provideData.findTaskByRoom(this.roomInput);
   }
 
 
