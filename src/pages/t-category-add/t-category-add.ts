@@ -48,7 +48,7 @@ export class TCategoryAddPage {
 
     this.params = this.navParams.data;
     this.s_no = this.params.s_no;
-    this.listCategory = this.params.listCategory;
+    this.listCategory = this.params.list;
     console.log("Percent Pars",this.listCategory);
 
     console.log(this.s_no);
@@ -69,12 +69,12 @@ export class TCategoryAddPage {
     console.log("hellooooooooooooooooooooooooooooooooooooooooooooooo", this.categoryDetail);
 
 
-    setTimeout(() => {
+
       for (let k = this.listCategory.length - 1; k >= 0; k--) {
         this.totalPercent += parseInt(this.listCategory[k].c_percent);
-        console.log("Total Percent", this.totalPercent);
+        console.log("Total Percent111111111111111", this.totalPercent);
       }
-    }, 3000);
+ 
 
     
 
@@ -86,9 +86,10 @@ export class TCategoryAddPage {
   }
 
   addCat() {
-
-    let checkPercent = this.totalPercent + parseInt(this.percent);
+    let percent = parseInt(this.percent);
+    let checkPercent = this.totalPercent + percent;
     console.log("total",this.percent);
+    console.log("TOTAL PER",this.totalPercent);
     console.log("check per",checkPercent);
     if (checkPercent > 100 ) {
       let alert = this.alertCtrl.create({

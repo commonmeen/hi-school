@@ -19,25 +19,56 @@
   <ion-item>
     <ion-label>เลือกวิชา</ion-label>
     <ion-select [(ngModel)]="subjectInput" (ionChange)="showRoom()">
-      <ion-option *ngFor="let sub of subjectDetail"  >{{sub.s_name}}</ion-option>
+      <ion-option *ngFor="let sub of subjectDetail">{{sub.s_name}}</ion-option>
     </ion-select>
   </ion-item>
 
-  <ion-label *ngIf="subjectInput" > 
+  <ion-label *ngIf="subjectInput">
     <ion-item>
-        <ion-label>เลือกห้องเรียน</ion-label>
-        <ion-select [(ngModel)]="roomInput" (ionChange)="showTask()">
-          <ion-option *ngFor="let room of roomDetail"  >{{room.r_name}}</ion-option>
-        </ion-select>
-      </ion-item>
+      <ion-label>เลือกห้องเรียน</ion-label>
+      <ion-select [(ngModel)]="roomInput" (ionChange)="showTask()">
+        <ion-option *ngFor="let room of roomDetail">{{room.r_name}}</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-label>
 
-  <!-- <ion-label *ngFor="let task of taskDetail">
-    {{task.task_name}}
-  </ion-label> -->
-  <ion-item  *ngFor="let task of task">
-      {{task.task_name}}
-  </ion-item>
+
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-9>
+        <ion-label class="taskList">การบ้านทั้งหมด</ion-label> 
+      </ion-col>
+      <ion-col >
+        <button ion-button small class="add-button" color="secondary" (click)="addTask()" *ngIf="roomInput" >เพิ่ม</button>
+        <button ion-button small class="add-button" color="secondary" *ngIf="!roomInput" style="background-color:#B3B2B2">เพิ่ม</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngFor="let task of task" class="task">
+      <ion-item-sliding #item no-lines>
+        <ion-item class="task">
+          <ion-row no-lines>
+            <ion-col >{{task.task_name}}</ion-col>
+            <ion-col class="right"> > </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="score">เก็บ {{task.score}} คะแนน</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="score">กำหนดส่ง {{task.deadline}}</ion-col>
+          </ion-row>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button (click)="editTask(task)" >แก้ไข</button>
+          <button ion-button (click)="deleteTask(task.task_no)" color="danger">ลบ</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+
+
 
 
 </ion-content>

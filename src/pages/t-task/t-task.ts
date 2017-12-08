@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 //import { AngularFireModule, FirebaseApp } from 'angularfire2' ;
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
@@ -37,13 +37,16 @@ export class TaskPage {
     public navParams: NavParams,
     public fireBase: AngularFireDatabase,
     public storage: Storage,
-    public provideData: DataProvider) {
+    public provideData: DataProvider,
+    public loadingCtrl: LoadingController) {
 
 
     this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
       this.userId = data;
       console.log("user idddddddddd", this.userId);
     }));
+
+    this.presentLoading();
 
     this.provideData.getTeach().subscribe(data=>{
       this.getTeach = data;
@@ -77,6 +80,16 @@ export class TaskPage {
   }
   showTask(){
     this.task = this.provideData.findTaskByRoom(this.roomInput);
+  }
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
+  }
+  addTask(){
+    console.log("ADD");
   }
 
 

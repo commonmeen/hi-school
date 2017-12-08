@@ -6,7 +6,7 @@ import { TCategoryAddPage } from '../t-category-add/t-category-add';
 import { config } from '../../app/app.module';
 import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
-import { ModalController} from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 
 /**
@@ -35,7 +35,7 @@ export class TCategoryDetailPage {
   rooms: any[] = [];
   roomDetail: any[] = [];
   totalPercent: number = 0;
-  balancePercent: number = 100-this.totalPercent;
+  balancePercent: number = 100 - this.totalPercent;
 
 
 
@@ -77,21 +77,21 @@ export class TCategoryDetailPage {
       }
     })
 
-   
 
-    console.log("Toalllllllll",this.listCategory);
-    
+
+    console.log("Toalllllllll", this.listCategory);
+
     //this.totalPercent = provideData.getPercent(this.subject.s_no);
-    console.log("เข้าแล้วววววววววววววววววว",this.totalPercent);
+    console.log("เข้าแล้วววววววววววววววววว", this.totalPercent);
 
     setTimeout(() => {
       for (let k = this.listCategory.length - 1; k >= 0; k--) {
         this.totalPercent += parseInt(this.listCategory[k].c_percent);
         console.log("Total Percent", this.totalPercent);
       }
-      this.balancePercent = 100-this.totalPercent;
-    }, 3000);
-    
+      this.balancePercent = 100 - this.totalPercent;
+    }, 1000);
+
 
   }
 
@@ -100,25 +100,38 @@ export class TCategoryDetailPage {
   }
 
   addCategory() {
-    let a: any = { s_no: this.subject.s_no, list: { c_name: '', c_no: '', c_percent: '' }, listCategory: this.listCategory};
-    let modal = this.modalCtrl.create(TCategoryAddPage,a);
+    let a: any = { s_no: this.subject.s_no, list: this.listCategory };
+    let modal = this.modalCtrl.create(TCategoryAddPage, a);
     modal.present();
     modal.onDidDismiss(data => {
-      this.totalPercent=0;
-      this.balancePercent=0;
+      this.totalPercent = 0;
+      this.balancePercent = 0;
       setTimeout(() => {
         for (let k = this.listCategory.length - 1; k >= 0; k--) {
           this.totalPercent += parseInt(this.listCategory[k].c_percent);
           console.log("Total Percent", this.totalPercent);
         }
-        this.balancePercent = 100-this.totalPercent;
-      }, 3000);
+        this.balancePercent = 100 - this.totalPercent;
+      }, 1000);
     })
+
   }
 
   editCategory(listCategory) {
     let listForPush: any = { list: listCategory, s_no: this.subject.s_no };
-    this.navCtrl.push(TCategoryAddPage, listForPush);
+    let modal = this.modalCtrl.create(TCategoryAddPage, listForPush);
+    modal.present();
+    modal.onDidDismiss(data => {
+      this.totalPercent = 0;
+      this.balancePercent = 0;
+      setTimeout(() => {
+        for (let k = this.listCategory.length - 1; k >= 0; k--) {
+          this.totalPercent += parseInt(this.listCategory[k].c_percent);
+          console.log("Total Percent", this.totalPercent);
+        }
+        this.balancePercent = 100 - this.totalPercent;
+      }, 1000);
+    })
   }
 
   deleteCategory(c) {
@@ -132,7 +145,11 @@ export class TCategoryDetailPage {
         this.key = this.categoryDetail.$key;
         for (var j = this.listCategory.length - 1; j >= 0; j--) {
           if (this.listCategory[j].c_no == this.categoryDetail.c_no) {
+            this.totalPercent -= parseInt(this.listCategory[j].c_percent);
+            console.log("Total Percent", this.totalPercent);
+            this.balancePercent = 100 - this.totalPercent;
             this.listCategory.splice(j, 1);
+            break;
           }
         }
         // let index = this.listCategory.indexOf(this.getCategory[i]);
@@ -143,9 +160,11 @@ export class TCategoryDetailPage {
     }
     this.provideData.deleteCategory(this.key);
 
+
+
   }
 
-  
+
 
 
 

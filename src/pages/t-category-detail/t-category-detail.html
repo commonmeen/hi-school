@@ -36,13 +36,14 @@
       <ion-item-sliding #item no-lines>
         <ion-item no-lines>
           <ion-row>
-            <ion-col col-10>{{list.c_name}}</ion-col>
-            <ion-col>{{list.c_percent}}%</ion-col>
+            <ion-col col-8>{{list.c_name}}</ion-col>
+            <ion-col col-2>{{list.c_percent}}%</ion-col>
+            <ion-col col-2 class="detail">></ion-col>
           </ion-row>
         </ion-item>
         <ion-item-options side="right">
-          <button ion-button (click)="editCategory(list)" >Edit</button>
-          <button ion-button (click)="deleteCategory(list.c_no)" color="danger">Delete</button>
+          <button ion-button (click)="editCategory(list)" >แก้ไข</button>
+          <button ion-button (click)="deleteCategory(list.c_no)" color="danger">ลบ</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
