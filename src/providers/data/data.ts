@@ -15,7 +15,7 @@ export class DataProvider {
   students: FirebaseListObservable<any[]>;
   rooms: FirebaseListObservable<any[]>;
   teachs: FirebaseListObservable<any[]>;
-  subject: FirebaseListObservable<any[]>;
+  subjects: FirebaseListObservable<any[]>;
   categorys: FirebaseListObservable<any[]>;
   tasks: FirebaseListObservable<any[]>;
   teacherDetail: any;
@@ -26,7 +26,9 @@ export class DataProvider {
 
   constructor(public angularfire: AngularFireDatabase, public a: HttpClient) {
     console.log('Hello DataProvider Provider');
+  
   }
+  
   getTeachers(): FirebaseListObservable<any[]> {
     this.teachers = this.angularfire.list("/Teacher");
     return this.teachers;
@@ -48,8 +50,8 @@ export class DataProvider {
   }
 
   getSubject(): FirebaseListObservable<any[]> {
-    this.subject = this.angularfire.list("/Subject");
-    return this.subject;
+    this.subjects = this.angularfire.list("/Subject");
+    return this.subjects;
   }
 
   getCategory(): FirebaseListObservable<any[]> {
@@ -80,6 +82,11 @@ export class DataProvider {
   updateRoom(key: any, value: any) {
     this.getRoom();
     this.rooms.update(key, value);
+  }
+
+  updateSubject(key: any, value: any){
+    this.getSubject();
+    this.subjects.update(key, value);
   }
 
   getCatBySub(subNo: string): any {
@@ -159,19 +166,6 @@ export class DataProvider {
     return studentThisRoom;
 
   }
-
-
-  // getPercent(subNo: string) : number{
-  //   let listCategory = this.getCatBySub(subNo);
-  //   let totalPercent : number =0;
-  //   for (let k = listCategory.length - 1; k >= 0; k--) {
-  //     totalPercent += parseInt(listCategory[k].c_percent);
-  //     console.log("Total Percent", totalPercent);
-  //   }
-  //   return totalPercent;
-
-
-  // }
 
   findTeacher(id): any {
     let getTeacher: any[] = []
@@ -306,8 +300,5 @@ export class DataProvider {
 
     return taskDetail;
   }
-
-
-
 
 }

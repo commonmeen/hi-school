@@ -21,6 +21,7 @@ import { AdminAddStudentPage } from '../pages/admin-add-student/admin-add-studen
 import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 import { DataProvider } from '../providers/data/data';
 import { AddToRoomPage } from '../pages/add-to-room/add-to-room' ;
+import { AddSubjectPage } from '../pages/add-subject/add-subject' ;
 
 
 export const config = {
@@ -45,7 +46,8 @@ export const config = {
     AdminAddTeacherPage, 
     AdminAddStudentPage,
 AddToRoomPage,
-  RoomDetailPage
+  RoomDetailPage,
+  AddSubjectPage
 
   ],
   imports: [
@@ -69,7 +71,8 @@ AddToRoomPage,
     AdminAddTeacherPage,
     AdminAddStudentPage,
     RoomDetailPage,
-    AddToRoomPage
+    AddToRoomPage,
+    AddSubjectPage
 
   ],
   providers: [
