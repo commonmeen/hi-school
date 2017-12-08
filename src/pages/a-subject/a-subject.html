@@ -14,5 +14,34 @@
 
 
 <ion-content padding>
-
+	<ion-row>
+		<ion-col>
+			<p>วิชา</p> 
+		</ion-col>
+		<ion-col class="right">
+			<button ion-button small (click)="addSubject()"> เพิ่มวิชาเรียน </button>
+		</ion-col>
+	</ion-row>
+	<ion-row class="headListSub">
+		<ion-col col-3>
+			รหัสวิชา
+		</ion-col>
+		<ion-col>
+			ชื่อวิชา
+		</ion-col>
+		<ion-col class="right">
+			หน่วยกิต
+		</ion-col>
+	</ion-row>
+	<ion-row class="listSub" *ngFor="let subject of subjects">
+		<ion-col col-3>
+			{{subject.s_no}}
+		</ion-col>
+		<ion-col col-7 (click)="addSubject(subject)"> 
+			{{subject.s_name}}  
+		</ion-col>
+		<ion-col class="right" (click)="addSubject(subject)">
+			{{subject.credit}}
+		</ion-col>
+	</ion-row>
 </ion-content>
