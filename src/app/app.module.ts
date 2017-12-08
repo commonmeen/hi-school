@@ -22,7 +22,9 @@ import { RoomDetailPage } from '../pages/a-room-detail/a-room-detail' ;
 import { DataProvider } from '../providers/data/data';
 import { AddToRoomPage } from '../pages/add-to-room/add-to-room' ;
 import { AddSubjectPage } from '../pages/add-subject/add-subject' ;
-
+import { AddMatchTeacherPage } from '../pages/add-match-teacher/add-match-teacher' ;
+import { AddMatchSubjectPage } from '../pages/add-match-subject/add-match-subject' ;
+import { AddMatchRoomPage } from '../pages/add-match-room/add-match-room' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -47,7 +49,10 @@ export const config = {
     AdminAddStudentPage,
 AddToRoomPage,
   RoomDetailPage,
-  AddSubjectPage
+  AddSubjectPage,
+  AddMatchTeacherPage,
+  AddMatchSubjectPage,
+  AddMatchRoomPage
 
   ],
   imports: [
@@ -72,7 +77,10 @@ AddToRoomPage,
     AdminAddStudentPage,
     RoomDetailPage,
     AddToRoomPage,
-    AddSubjectPage
+    AddSubjectPage,
+    AddMatchTeacherPage,
+    AddMatchSubjectPage,
+    AddMatchRoomPage
 
   ],
   providers: [

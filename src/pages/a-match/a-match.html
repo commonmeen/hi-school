@@ -13,6 +13,34 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding>  
+	<ion-row>
+		<ion-col>
+			<p>ข้อมูลการจัดการสอน</p>
+		</ion-col>
+		<ion-col class="right">
+			<button ion-button small (click)="addTeach()"> จัดการสอนเพิ่ม </button>
+		</ion-col>
+	</ion-row>
+	<ion-row *ngFor="let t of teachs">
+		<ion-col col-10>
+		<ion-label class="name"> {{t.teacher.t_no}} {{t.teacher.t_name}} {{t.teacher.t_surname}}</ion-label>
+		<ion-label class="detail"> {{t.s_name}}, {{t.r_name}} </ion-label>
+		</ion-col>
+		<ion-col (click)="removeTeach(t)"> 
+			<ion-icon name="remove-circle" color="danger" center class='iconRemove'></ion-icon>
+		</ion-col>
+	</ion-row>
+	<hr>
+<!-- 	<ion-row>
+		<ion-col>
+			<p>ครูที่ยังไม่มีวิชาสอน</p>
+		</ion-col>
+	</ion-row>
+	<hr>
+	<ion-row>
+		<ion-col>
+			<p>วิชาที่ยังไม่มีครูสอน</p>
+		</ion-col>
+	</ion-row> -->
 </ion-content>

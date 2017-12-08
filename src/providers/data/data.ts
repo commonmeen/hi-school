@@ -89,6 +89,16 @@ export class DataProvider {
     this.subjects.update(key, value);
   }
 
+  updateTeach(key: any, value: any){
+    this.getTeach();
+    this.teachs.update(key, value);
+  }
+
+  deleteCategory(key) {
+    this.getCategory();
+    this.categorys.remove(key);
+  }
+
   getCatBySub(subNo: string): any {
     let allCategory: any[] = [];
     let listCategory: any[] = [];
@@ -120,11 +130,6 @@ export class DataProvider {
       }
     });
     return listCategory;
-  }
-
-  deleteCategory(key) {
-    this.getCategory();
-    this.categorys.remove(key);
   }
 
   getStudentsByRoom(roomNo: string): any {
@@ -164,7 +169,6 @@ export class DataProvider {
     }
     console.log("return from providers");
     return studentThisRoom;
-
   }
 
   findTeacher(id): any {
@@ -269,25 +273,19 @@ export class DataProvider {
     let getRoom: any;
     let roomDetail: any;
     let taskDetail: any[] = [];
-
+    
     this.getRoom().subscribe(data => {
       getRoom = data;
     });
-
     for (let i = getRoom.length - 1; i >= 0; i--) {
       console.log("เข้าสิ", roomName);
       if (getRoom[i].r_name == roomName) {
         roomDetail = getRoom[i];
         console.log("ROOM NO", roomDetail);
-
       }
     }
-
     this.getTask().subscribe(data => {
       getTask = data;
-      console.log('เหี้ยยยยยยยย  ', getTask);
-
-      console.log("เล้ง", getTask.length);
       for (let j = getTask.length - 1; j >= 0; j--) {
         console.log("เข้าสิจ๊ะ");
         if (getTask[j].r_no == roomDetail.r_no) {
@@ -296,9 +294,6 @@ export class DataProvider {
         }
       }
     });
-
-
     return taskDetail;
   }
-
 }
