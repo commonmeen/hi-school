@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
-
+  <form [formGroup]="addForm" (ngSubmit)="addTask()">
+    <ion-item>
+      <ion-label>ชื่อการบ้าน</ion-label>
+      <ion-input type="text" formControlName="name" [(ngModel)]="name" value=></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>คะแนนเต็ม</ion-label>
+      <ion-input type="number" formControlName="score" [(ngModel)]="score" value=></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>รายละเอียด</ion-label>
+      <ion-input type="text" formControlName="description" [(ngModel)]="description" value=></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>กำหนดส่งงาน</ion-label>
+      <ion-input type="text" formControlName="description" [(ngModel)]="description" value=></ion-input>
+    </ion-item>
+    <ion-grid>
+      <ion-row class="enterButton">
+        <ion-col col-6><button ion-button type="submit" >ตกลง</button></ion-col>
+        <ion-col col-6><button ion-button  navPop >ยกเลิก</button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

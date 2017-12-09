@@ -26,22 +26,26 @@
 		<ion-col col-3>
 			รหัสวิชา
 		</ion-col>
-		<ion-col>
+		<ion-col col-5>
 			ชื่อวิชา
 		</ion-col>
-		<ion-col class="right">
+		<ion-col class="right" >
 			หน่วยกิต
 		</ion-col>
 	</ion-row>
-	<ion-row class="listSub" *ngFor="let subject of subjects">
-		<ion-col col-3>
-			{{subject.s_no}}
-		</ion-col>
-		<ion-col col-7 (click)="addSubject(subject)"> 
-			{{subject.s_name}}  
-		</ion-col>
-		<ion-col class="right" (click)="addSubject(subject)">
-			{{subject.credit}}
-		</ion-col>
-	</ion-row>
+
+	<ion-list *ngFor="let subject of subjects"  class="listSub">
+			<ion-item-sliding #item no-lines>
+				<ion-item no-lines>
+					<ion-row >
+						<ion-col col-3>{{subject.s_no}}</ion-col>
+						<ion-col col-7>{{subject.s_name}} </ion-col>
+						<ion-col col-2>{{subject.credit}}</ion-col>
+					</ion-row>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button (click)="addSubject(subject)">แก้ไข</button>
+				</ion-item-options>
+			</ion-item-sliding>
+		</ion-list>
 </ion-content>

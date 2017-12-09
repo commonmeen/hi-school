@@ -6,28 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title ><img src="pic/logo.png" class="logo"></ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>
+			<img src="pic/logo.png" class="logo">
+		</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 	<ion-row>
-		<ion-col>
-			<p>ห้องเรียน</p> 
+		<ion-col class="center">
+			<p>ห้องเรียน</p>
 		</ion-col>
-		<ion-col class="right">
-			<button ion-button small (click)="addRoom()"> เพิ่มห้องเรียน </button>
+		<ion-col class="center">
+			<p>จำนวนนักเรียน</p>
 		</ion-col>
 	</ion-row>
-	<ion-row class="listRoom" *ngFor="let room of rooms">
-		<ion-col col-7 (click)="moveToRoomDetail(room)"> 
-			{{room.r_name}}  
-		</ion-col>
-		<ion-col class="right" (click)="moveToRoomDetail(room)">
-			{{room.stdCount}}
+	<ion-list *ngFor="let room of rooms" class="listRoom center">
+		<ion-item-sliding #item no-lines>
+			<ion-item no-lines>
+				<ion-row class="center">
+					<ion-col col-6>{{room.r_name}}</ion-col>
+					<ion-col col-6>{{room.stdCount}} คน</ion-col>
+				</ion-row>
+			</ion-item>
+			<ion-item-options side="right">
+				<button ion-button (click)="moveToRoomDetail(room)">รายละเอียด</button>
+			</ion-item-options>
+		</ion-item-sliding>
+	</ion-list>
+	<ion-row>
+		<ion-col col-12 class="center">
+			<button ion-button small (click)="addRoom()"> เพิ่มห้องเรียน </button>
 		</ion-col>
 	</ion-row>
 </ion-content>

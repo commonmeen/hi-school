@@ -90,6 +90,7 @@ export class TaskPage {
   }
   addTask(){
     console.log("ADD");
+    
   }
 
 
