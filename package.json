@@ -31,7 +31,7 @@
     "cordova-ios": "^4.5.4",
     "cordova-plugin-crosswalk-webview": "^2.3.0",
     "cordova-plugin-device": "^1.1.7",
-    "cordova-plugin-firebase": "^0.1.24",
+    "cordova-plugin-firebase": "^0.1.25",
     "cordova-plugin-geolocation": "^3.0.0",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^4.1.0",
