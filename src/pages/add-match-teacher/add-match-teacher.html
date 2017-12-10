@@ -1,0 +1,31 @@
+<!--
+  Generated template for the AddMatchTeacherPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title ><img src="pic/logo.png" class="logo"></ion-title>
+    <ion-buttons end>
+    <button ion-button icon-left (click)="moveToSelectSubject()">Next</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ion-row>
+  		<ion-col>เลือกครู</ion-col>
+  	</ion-row>
+  	<ion-item *ngFor="let teacher of showTeachers">
+  		<ion-label *ngIf="teacher">{{teacher.t_no}} {{teacher.t_name}} {{teacher.t_surname}}</ion-label>
+  		<ion-checkbox *ngIf="!chooseTeacher && !teacher.status" disabled="false" [(ngModel)]="teacher.status" (ionChange)="chooseThis(teacher)"></ion-checkbox>
+		<ion-checkbox *ngIf="chooseTeacher && teacher.status" [(ngModel)]="teacher.status" (ionChange)="chooseThis(teacher)"></ion-checkbox>
+  		<ion-checkbox *ngIf="chooseTeacher && !teacher.status" [(ngModel)]="teacher.status" disabled='true' (ionChange)="chooseThis(teacher)"></ion-checkbox>
+  	</ion-item>
+
+
+</ion-content>
