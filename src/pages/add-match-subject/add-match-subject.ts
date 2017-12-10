@@ -63,7 +63,7 @@ export class AddMatchSubjectPage {
         subTitle: 'โปรดเลือกวิชาที่ต้องการให้ "'+ this.teach.t_name +'" สอน',
         buttons: ['OK']
       });
-      alert.present();
+      alert.present(); 
   	}
   }
 }
