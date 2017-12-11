@@ -85,9 +85,6 @@ export class CategoryPage {
 
     }, 3000);
 
-
-
-
   }
 
   ionViewDidLoad() {
