@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CategoryPage } from '../t-category/t-category';
+import { THelpPage } from '../t-help/t-help';
 
 
 /**
@@ -88,5 +89,8 @@ export class TeacherProfilePage {
     //this.app.getRootNavs[0].popToRoot();
     //this.app.getRootNav().popToRoot();
 
+  }
+  moveToHelp(){
+    this.navCtrl.push(THelpPage);
   }
 }

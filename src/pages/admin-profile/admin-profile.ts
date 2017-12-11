@@ -6,6 +6,7 @@ import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { AHelpPage } from '../a-help/a-help';
 
 
 
@@ -78,7 +79,9 @@ students:any[]=[];
     this.app.getRootNav().popToRoot() ;
     // console.log(this.app.getRootNav().popToRoot(HomePage));
   }
+
+  moveToHelp(){
+    this.navCtrl.push(AHelpPage);
+  }
 }
-// private get _navCtrl(): NavController {
-//         return this._app.getRootNav();
-//     }
+
