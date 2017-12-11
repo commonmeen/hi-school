@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { Subject } from 'rxjs/Subject';
 import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
+import { LoadingController } from 'ionic-angular';
 
 
 /**
@@ -33,7 +34,8 @@ export class CategoryPage {
     public navParams: NavParams,
     public fireBase: AngularFireDatabase,
     public provideData: DataProvider,
-    public storage: Storage) {
+    public storage: Storage,
+    public loadingCtrl: LoadingController) {
 
 
     this.teachDetail = this.navParams.data;
@@ -51,6 +53,8 @@ export class CategoryPage {
       this.userId = data;
       console.log("11111111111111111111111111111", this.userId);
     }));
+
+    this.presentLoading();
 
     setTimeout(() => {
       provideData.getTeachers().subscribe(data => {
@@ -93,6 +97,14 @@ export class CategoryPage {
 
   moveToCategoryDetail(sub) {
     this.navCtrl.push(TCategoryDetailPage, sub);
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
   }
 
 
