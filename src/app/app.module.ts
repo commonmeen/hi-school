@@ -27,6 +27,7 @@ import { AddMatchSubjectPage } from '../pages/add-match-subject/add-match-subjec
 import { AddMatchRoomPage } from '../pages/add-match-room/add-match-room';
 import { THelpPage } from '../pages/t-help/t-help';
 import { AHelpPage } from '../pages/a-help/a-help';
+import { TaskAddPage } from '../pages/t-task-add/t-task-add' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -56,7 +57,8 @@ export const config = {
     AddMatchSubjectPage,
     AddMatchRoomPage,
     THelpPage,
-    AHelpPage
+    AHelpPage,
+    TaskAddPage
 
   ],
   imports: [
@@ -86,7 +88,8 @@ export const config = {
     AddMatchSubjectPage,
     AddMatchRoomPage,
     THelpPage,
-    AHelpPage
+    AHelpPage,
+    TaskAddPage
 
   ],
   providers: [

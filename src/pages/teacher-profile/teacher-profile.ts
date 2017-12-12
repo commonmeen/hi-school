@@ -44,7 +44,7 @@ export class TeacherProfilePage {
       });
       this.findDataTeacher();
       console.log(this.teacherDetail + 'detail con');
-    }, 3000);
+    }, 1000);
     this.teacherDetail.t_name = 'wait';
     console.log(this.teacherDetail);
 
@@ -75,7 +75,7 @@ export class TeacherProfilePage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 3000
+      duration: 1000
     });
     loader.present();
   }

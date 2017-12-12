@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data' ;
 import { AlertController } from 'ionic-angular';
 import { AddMatchRoomPage } from '../add-match-room/add-match-room' ;
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the AddMatchSubjectPage page.
@@ -24,7 +25,7 @@ export class AddMatchSubjectPage {
 	teach : any ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data:DataProvider,public alertCtrl: AlertController) {
+  	public data:DataProvider,public alertCtrl: AlertController,public modalCtrl: ModalController) {
   	
   	this.teach = this.navParams.data ;
   	data.getSubject().subscribe(data=>{
@@ -33,9 +34,9 @@ export class AddMatchSubjectPage {
   	for (var i = this.allSubject.length -1 ; i>=0 ; i--){
     	let s = {s_no: this.allSubject[i].s_no,s_name:this.allSubject[i].s_name,credit:this.allSubject[i].credit,status:false};
     	this.showSubject.push(s);
-    	console.log("push s");
+    	// console.log("push s");
     }
-    console.log(this.chooseSubject);
+    // console.log(this.chooseSubject);
 
   }
 

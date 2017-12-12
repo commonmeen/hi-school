@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data' ;
 import { AddMatchTeacherPage } from '../add-match-teacher/add-match-teacher' ;
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the AMatchPage page.
@@ -24,7 +25,7 @@ export class MatchPage {
 	teachs : any[] = [] ;
 
   	constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data:DataProvider) {
+  	public data:DataProvider,public modalCtrl: ModalController) {
   	
   		data.getTeach().subscribe(data=>{
           	this.allTeachs=data;
@@ -38,10 +39,8 @@ export class MatchPage {
     	data.getRoom().subscribe(data=>{
           	this.allRooms=data;
     	});
-
-  		setTimeout(() => {
-    		this.getDateForThisPage() ;
-    	}, 3000);
+      
+      this.teachs = this.getDateForThisPage() ;
   	}
 
   	ionViewDidLoad() {
@@ -49,17 +48,32 @@ export class MatchPage {
   	}
 
   	addTeach() : void{
-  		this.navCtrl.push(AddMatchTeacherPage);
+      let modal = this.modalCtrl.create(AddMatchTeacherPage, );
+      modal.present();
+      modal.onDidDismiss(data => {
+        this.teachs = [] ;
+        this.getDateForThisPage();
+      })
+  		// this.navCtrl.push(AddMatchTeacherPage);
+  	} 
+
+  	removeTeach(t:any){
+      for(var i = this.allTeachs.length -1 ; i>=0 ; i--){
+        if(t.teacher.t_no == this.allTeachs[i].t_no && t.s_no == this.allTeachs[i].s_no && t.r_no == this.allTeachs[i].r_no){
+          let key = this.allTeachs[i].$key ;
+          console.log("remove",key);
+          this.data.getTeach().remove(key);
+          break;
+        }
+      }
+      this.teachs = [] ;
+      this.getDateForThisPage();
   	}
 
-  	removeTeach(){
-
-  	}
-
-  	getDateForThisPage() : void{
+  	getDateForThisPage() : any[] {
   		for (var i = this.allTeachs.length -1 ; i>=0 ; i--){
-    		var r_name ;
-    		var s_name ;
+    		var r_name,r_no ;
+    		var s_name,s_no ;
     		var teacher ;
     		// console.log("loop teach");
     		for(var j = this.allTeachers.length -1 ; j>=0 ; j--){
@@ -71,11 +85,13 @@ export class MatchPage {
     						for(var l = this.allRooms.length -1 ; l>=0 ; l--){
     							if(this.allTeachs[i].r_no == this.allRooms[l].r_no){
     								r_name = this.allRooms[l].r_name ;
+                    r_no = this.allRooms[l].r_no ;
     								// console.log("ได้ room");
     								break ;
     							}
     						}
     						s_name = this.allSubjects[k].s_name ;
+                s_no = this.allSubjects[k].s_no ;
     						// console.log("ได้ subject");
     						break;
     					}
@@ -85,10 +101,11 @@ export class MatchPage {
     				break ;
     			}
     		}
-    		let t = {teacher,s_name,r_name};
+    		let t = {teacher,s_no,s_name,r_no,r_name};
     		this.teachs.push(t);
     		console.log("push แล้ว",this.teachs);
     	}
     	console.log("teachs",this.teachs);
+      return this.teachs ;
   	}
 }

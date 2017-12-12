@@ -14,22 +14,29 @@
 
 
 <ion-content padding>
+{{subject.s_name}} : {{room.r_name}}
   <form [formGroup]="addForm" (ngSubmit)="addTask()">
     <ion-item>
       <ion-label>ชื่อการบ้าน</ion-label>
-      <ion-input type="text" formControlName="name" [(ngModel)]="name" value=></ion-input>
+      <ion-input type="text" formControlName="name" [(ngModel)]="name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>คะแนนเต็ม</ion-label>
-      <ion-input type="number" formControlName="score" [(ngModel)]="score" value=></ion-input>
+      <ion-input type="number" formControlName="score" [(ngModel)]="score" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>เลือกหมวดหมู่</ion-label>
+      <ion-select formControlName="category" [(ngModel)]="category">
+      <ion-option *ngFor="let cat of categoryThisSubject">{{cat.c_no}} {{cat.c_name}}</ion-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>รายละเอียด</ion-label>
-      <ion-input type="text" formControlName="description" [(ngModel)]="description" value=></ion-input>
+      <ion-input type="text" formControlName="description" [(ngModel)]="description" ></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>กำหนดส่งงาน</ion-label>
-      <ion-input type="text" formControlName="description" [(ngModel)]="description" value=></ion-input>
+      <ion-datetime displayFormat="DD/MM/YYYY" min={{today}} max=2019 formControlName="deadline" [(ngModel)]="deadline"></ion-datetime>
     </ion-item>
     <ion-grid>
       <ion-row class="enterButton">

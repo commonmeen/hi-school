@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>add match room</ion-title>
+    <ion-title ><img src="pic/logo.png" class="logo"></ion-title>
+    <ion-buttons end>
+    <button ion-button icon-left (click)="addMatch()">Save</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+	<ion-row>
+  		<ion-col>เลือกห้องเรียน (เลือกได้มากกว่า 1)</ion-col>
+  	</ion-row>
+  	<ion-row>
+  		<ion-col>ผู้สอน : {{teacher.t_name}}</ion-col>
+  		<ion-col>วิชา : {{subject.s_name}}</ion-col>
+  	</ion-row>
+  	<ion-item *ngFor="let room of showRoom">
+  		<ion-label *ngIf="room">{{room.r_no}} {{room.r_name}}</ion-label>
+  		<ion-checkbox *ngIf="room" [(ngModel)]="room.status" (ionChange)="chooseThis(room)"></ion-checkbox>
+  	</ion-item>
 </ion-content>

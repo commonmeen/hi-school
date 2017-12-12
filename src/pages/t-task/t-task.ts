@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../../providers/data/data';
+import { TaskAddPage } from '../t-task-add/t-task-add' ;
 
 /**
  * Generated class for the TTaskPage page.
@@ -19,18 +20,21 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class TaskPage {
   tasks: any[];
-  taskDetail: any = { t_name: '' };
-  userId: number;
-  teacherDetail:any;
+  allTask : any[] = [];
   teachDetail:any[]=[];
   subjectDetail:any[]=[];
   getTeach:any[]=[];
   getRoom:any[]=[];
   getSubject:any[]=[];
-  subjectInput:any;
-  roomDetail:any[]=[];
-  roomInput:any;
   task:any[]=[];
+  roomDetail:any[]=[];
+
+  taskDetail: any = { t_name: '' };
+  userId: number;
+  teacherDetail:any;
+  subjectInput:any;
+  roomInput:any;
+  
 
 
   constructor(public navCtrl: NavController,
@@ -64,10 +68,13 @@ export class TaskPage {
       console.log("มาแล้วจ้าาาาา Teach",this.teachDetail);
       this.subjectDetail = this.provideData.findSubjectByTeach(this.teachDetail);
       console.log("มาแล้วจ้าาาาา Sub",this.subjectDetail);
-    },3000)
+    },1000)
     
 
     console.log("Sub Input",this.subjectInput);
+    this.provideData.getTask().subscribe(data=>{
+      this.allTask = data;
+    })
   }
 
   ionViewDidLoad() {
@@ -78,21 +85,43 @@ export class TaskPage {
     console.log("เข้าสักทีสิโว้ยยยยยยยยยยยยยยยยยยยยยยยยย");
     this.roomDetail = this.provideData.findRoomBySubject(this.subjectInput);
   }
+
   showTask(){
     this.task = this.provideData.findTaskByRoom(this.roomInput);
   }
+
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 3000
+      duration: 1000
     });
     loader.present();
   }
+
   addTask(){
     console.log("ADD");
-    
+    let a = {r_name : this.roomInput, s_name : this.subjectInput};
+    this.navCtrl.push(TaskAddPage,a);
   }
 
+  editTask(task:any){
+    console.log("Edit",task);
+    let a = {r_name : this.roomInput, s_name : this.subjectInput, task : task};
+    this.navCtrl.push(TaskAddPage,a);
+  }
 
+  deleteTask(task_no:any){
+    // console.log(this.allTask.length - 1);
+    for (var z = this.allTask.length - 1 ; z >= 0 ; z--) {
+      if (this.allTask[z].task_no == task_no) {
+        let TaskKey = this.allTask[z].$key;
+        console.log("Remove",TaskKey);
+        this.provideData.getTask().remove(TaskKey); 
+        break;
+      }
+    }
+    this.tasks = [] ;
+    this.showTask();
+  }
 
 }
