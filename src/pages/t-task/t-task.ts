@@ -43,7 +43,7 @@ export class TaskPage {
     this.storage.get('UserId').then((data) => {
       this.userId = data;
     });
-  },1100)
+  },1100);
 
     this.presentLoading();
 

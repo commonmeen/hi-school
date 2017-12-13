@@ -2,14 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database' ;
 import { RoomDetailPage } from '../a-room-detail/a-room-detail';
-// import { DataProvider } from '../../providers/data/data' ;
 import { AlertController } from 'ionic-angular';
-/**
- * Generated class for the ARoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,16 +19,11 @@ export class RoomPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ARoomPage');
-  }
-
   moveToRoomDetail(room:any){
   	this.navCtrl.push(RoomDetailPage,room);
   }
   
   addRoom(): void {
-     // let newRoom: string = prompt("New Room") ;
      let newRoom = '';
      let prompt = this.alertCtrl.create({
       title: 'สร้างห้องใหม่',
@@ -49,9 +37,7 @@ export class RoomPage {
       buttons: [
         {
           text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
+          handler: data => {}
         },
         {
           text: 'Save',
@@ -61,7 +47,6 @@ export class RoomPage {
             let status = 0 ;
             if (newRoom != '' && newRoom != null) {
               for (var i = this.rooms.length - 1; i >= 0; i--) {
-                console.log("roomloop");
                 if (newRoom == this.rooms[i].r_name){
                   let alert = this.alertCtrl.create({
                     title: 'Error!',

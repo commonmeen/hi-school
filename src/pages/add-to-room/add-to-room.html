@@ -1,9 +1,4 @@
-<!--
-  Generated template for the AddToRoomPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -18,7 +13,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
   <ion-row>
   <ion-col>{{room.r_name}}</ion-col>
@@ -28,13 +22,11 @@
      <ion-label *ngIf="item.std_no">{{item.std_no}} {{item.std_name}} {{item.std_surname}}</ion-label>
      <ion-label *ngIf="item.t_no">{{item.t_no}} {{item.t_name}} {{item.t_surname}}</ion-label>
      <ion-checkbox *ngIf="item.std_no" [(ngModel)]="item.std_status" (ionChange)="updateRoom(item.std_no,item.std_status)"></ion-checkbox>
-     <!-- <ion-item> -->
+
      <ion-checkbox *ngIf="item.t_no&&teacherCount>=2&&item.t_status==true" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
      <ion-checkbox *ngIf="item.t_no&&teacherCount>=2&&item.t_status==false" disabled="true" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
-    <!--  </ion-item> -->
+
     <ion-checkbox *ngIf="item.t_no&&teacherCount<2" disabled="false" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox>
-<!-- 
-    <ion-checkbox *ngIf="item.t_no&&teacherCount<2" disabled="false" checked="true" [(ngModel)]="item.t_status" (ionChange)="updateRoom(item.t_no,item.t_status)"></ion-checkbox> -->
   </ion-item>
   <ion-item *ngFor="let item of studentInRoom">
     <ion-label *ngIf="item.std_no">{{item.std_no}} {{item.std_name}} {{item.std_surname}}</ion-label>

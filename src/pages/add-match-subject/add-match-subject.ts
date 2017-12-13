@@ -5,13 +5,6 @@ import { AlertController } from 'ionic-angular';
 import { AddMatchRoomPage } from '../add-match-room/add-match-room' ;
 import { ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the AddMatchSubjectPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-add-match-subject',
@@ -24,8 +17,11 @@ export class AddMatchSubjectPage {
 	chooseSubject : any ;
 	teach : any ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data:DataProvider,public alertCtrl: AlertController,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+  	public data:DataProvider,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController) {
   	
   	this.teach = this.navParams.data ;
   	data.getSubject().subscribe(data=>{
@@ -34,23 +30,14 @@ export class AddMatchSubjectPage {
   	for (var i = this.allSubject.length -1 ; i>=0 ; i--){
     	let s = {s_no: this.allSubject[i].s_no,s_name:this.allSubject[i].s_name,credit:this.allSubject[i].credit,status:false};
     	this.showSubject.push(s);
-    	// console.log("push s");
     }
-    // console.log(this.chooseSubject);
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddMatchSubjectPage');
   }
 
   chooseThis(subject : any){
   	if (subject.status == true){
   		this.chooseSubject = subject ;
-  		console.log("change in",this.chooseSubject);
   	} else {
   		this.chooseSubject = undefined ;
-  		console.log("change out",this.chooseSubject);
   	}
   }
 

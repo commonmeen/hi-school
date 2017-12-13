@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data' ;
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-/**
- * Generated class for the AddSubjectPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -23,11 +17,14 @@ export class AddSubjectPage {
 	credit : any ;
 	addForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data : DataProvider,public builder:FormBuilder) {
+  constructor(public navCtrl: NavController,
+   public navParams: NavParams,
+  	public data : DataProvider,
+    public builder:FormBuilder) {
+
   	this.param = this.navParams.data ;
   	this.subject = this.param.sub ;
-  	console.log(this.subject);
+
   	if (this.subject==null){      
         this.subject = {s_no:this.param.sno, s_name:'', credit:''};
   	}
@@ -38,22 +35,16 @@ export class AddSubjectPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddSubjectPage');
-  }
-
   addSub(){
-	if (this.subject.$key == null) {
-	    let newSub: any = { s_no: this.s_no, s_name: this.s_name, credit: this.credit}
-	    this.data.getSubject().push(newSub);
-	    console.log("เพิ่มวิชาแล้วจ้าา");
-	    this.navCtrl.pop();
-	} else {
-	    console.log("key", this.subject.$key);
-	    let newSub: any = { s_no: this.s_no, s_name: this.s_name, credit: this.credit}
-	    let k = this.subject.$key;
-	    this.data.updateSubject(k, newSub);
-	    this.navCtrl.pop();
-	}
+  	if (this.subject.$key == null) {
+  	  let newSub: any = { s_no: this.s_no, s_name: this.s_name, credit: this.credit}
+  	  this.data.getSubject().push(newSub);
+  	  this.navCtrl.pop();
+  	} else {
+      let newSub: any = { s_no: this.s_no, s_name: this.s_name, credit: this.credit}
+      let k = this.subject.$key;
+      this.data.updateSubject(k, newSub);
+      this.navCtrl.pop();
+  	}
   }
 }

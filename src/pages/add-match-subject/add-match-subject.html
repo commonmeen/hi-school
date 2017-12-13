@@ -1,9 +1,4 @@
-<!--
-  Generated template for the AddMatchSubjectPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -18,7 +13,6 @@
 
 </ion-header>
 
-
 <ion-content padding>
 	<ion-row>
   		<ion-col>เลือกวิชา</ion-col>
@@ -30,6 +24,5 @@
 		<ion-checkbox *ngIf="chooseSubject && subject.status" [(ngModel)]="subject.status" (ionChange)="chooseThis(subject)"></ion-checkbox>
   		<ion-checkbox *ngIf="chooseSubject && !subject.status" [(ngModel)]="subject.status" disabled='true' (ionChange)="chooseThis(subject)"></ion-checkbox>
   	</ion-item>
-
 
 </ion-content>

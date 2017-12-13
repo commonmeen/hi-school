@@ -4,18 +4,12 @@ import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the AddMatchRoomPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-add-match-room',
   templateUrl: 'add-match-room.html',
 })
+
 export class AddMatchRoomPage {
 
 	allRooms : any[] = [] ;
@@ -26,8 +20,11 @@ export class AddMatchRoomPage {
 	showRoom : any[] = [] ;
 	chooseRoom : any[] = [] ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data:DataProvider,public alertCtrl: AlertController,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+   public navParams: NavParams,
+  	public data:DataProvider,
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController) {
 
   	this.param = navParams.data ;
   	this.teacher = this.param.teacher ;
@@ -53,22 +50,15 @@ export class AddMatchRoomPage {
    			}
     	}
     }
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddMatchRoomPage');
   }
 
   chooseThis(r :any){
-	if (r.status) {
-  		this.chooseRoom.push(r);
-  		console.log("chooseRoomIn",this.chooseRoom);
-	} else {
-		let index = this.chooseRoom.indexOf(r);
-		this.chooseRoom.splice(index,1);
-		console.log("chooseRoomOut",this.chooseRoom); 
-	}
+  	if (r.status) {
+      this.chooseRoom.push(r);
+  	} else {
+  		let index = this.chooseRoom.indexOf(r);
+  		this.chooseRoom.splice(index,1);
+  	}
   }
 
   addMatch(){
@@ -87,5 +77,4 @@ export class AddMatchRoomPage {
       alert.present(); 
   	}
   }
-
 }
