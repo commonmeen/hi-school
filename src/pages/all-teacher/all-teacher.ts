@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController , NavParams} from 'ionic-angular';
-//import { TeacherProfilePage } from '../teacher-profile/teacher-profile';
-/**
- * Generated class for the AllTeacherPage tabs.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,10 +13,7 @@ export class AllTeacherPage {
   tTaskRoot = 'TaskPage'
   tCategoryRoot = 'CategoryPage'
 
-  // aa : string ;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  		// this.aa = navParams.data ;
-  		// console.log(this.aa + "aa ngi");
+
   	}
 }

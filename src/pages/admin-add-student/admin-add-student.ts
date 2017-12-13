@@ -3,13 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-/**
- * Generated class for the AdminAddStudentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-admin-add-student',
@@ -25,8 +18,11 @@ export class AdminAddStudentPage {
 	gender: string ;
 	tel: number
 
-	constructor(public builder:FormBuilder, public navCtrl: NavController, 
-  	public navParams: NavParams, public fireBase: AngularFireDatabase) {
+	constructor(public builder:FormBuilder, 
+    public navCtrl: NavController, 
+  	public navParams: NavParams, 
+    public fireBase: AngularFireDatabase) {
+
   	this.students = this.fireBase.list('/Student');
   	this.addForm = this.builder.group({
       'name' :['',Validators.required],
@@ -34,16 +30,12 @@ export class AdminAddStudentPage {
       'gender' :['',Validators.required],
       'tel':['',Validators.required]
     });
+
   	fireBase.list('/Student').subscribe(data=>{
       this.lastStudent=data;
       this.lastStudentNo = parseInt(this.lastStudent[this.lastStudent.length-1].std_no);
       this.lastStudentNo++;
-      console.log('cno มาแล้วจ้า',this.lastStudentNo);
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminAddStudentPage');
   }
 
   addStudent(){

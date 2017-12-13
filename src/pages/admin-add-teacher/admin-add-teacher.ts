@@ -3,19 +3,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-
-/**
- * Generated class for the AdminAddTeacherPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-admin-add-teacher',
   templateUrl: 'admin-add-teacher.html',
 })
+
 export class AdminAddTeacherPage {
 	teachers: FirebaseListObservable<any[]>;
 	addForm: FormGroup;
@@ -27,8 +20,11 @@ export class AdminAddTeacherPage {
 	tel : number ;
 	email : string ;
 
-  constructor(public builder:FormBuilder, public navCtrl: NavController, 
-  	public navParams: NavParams, public fireBase: AngularFireDatabase) {
+  constructor(public builder:FormBuilder, 
+    public navCtrl: NavController, 
+  	public navParams: NavParams, 
+    public fireBase: AngularFireDatabase) {
+    
   	this.teachers = this.fireBase.list('/Teacher');
   	this.addForm = this.builder.group({
       'name' :['',Validators.required],
@@ -41,13 +37,8 @@ export class AdminAddTeacherPage {
       this.lastTeacher=data;
       this.lastTeacherNo = parseInt(this.lastTeacher[this.lastTeacher.length-1].t_no);
       this.lastTeacherNo++;
-      console.log('cno มาแล้วจ้า',this.lastTeacherNo);
     }
     );
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminAddTeacherPage');
   }
 
   addTeacher(){
