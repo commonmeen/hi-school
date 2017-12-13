@@ -18,6 +18,7 @@ export class DataProvider {
   subjects: FirebaseListObservable<any[]>;
   categorys: FirebaseListObservable<any[]>;
   tasks: FirebaseListObservable<any[]>;
+  stdTasks : FirebaseListObservable<any[]>;
   teacherDetail: any;
   allTeacher: any[] = [];
   teachForMatch : any[]=[];
@@ -64,6 +65,11 @@ export class DataProvider {
     return this.tasks;
   }
 
+  getStdTask(): FirebaseListObservable<any[]> {
+    this.stdTasks = this.angularfire.list("/StdTask");
+    return this.stdTasks;
+  }
+
   updateTeacher(key: any, value: any) {
     this.getTeachers();
     this.teachers.update(key, value);
@@ -92,6 +98,11 @@ export class DataProvider {
   updateTask(key: any, value: any){
     this.getTask();
     this.tasks.update(key, value);
+  }
+
+  updateStdTask(key: any, value: any){
+    this.getStdTask();
+    this.stdTasks.update(key, value);
   }
 
   deleteCategory(key) {
@@ -125,14 +136,17 @@ export class DataProvider {
     return listCategory;
   }
 
-  getStudentsByRoom(roomNo: string): any {
+  getStudentsByRoom(roomNo: string): any[] {
     let allStudent: any[] = [];
     let studentThisRoom: any[] = [];
     this.getStudents().subscribe(data => {
       allStudent = data;
     });
+    setTimeout(()=>{
     for (var i = allStudent.length - 1; i >= 0; i--) {
+      // console.log("std room dp");
       if (allStudent[i].r_no == roomNo) {
+
         studentThisRoom.push(allStudent[i]);
       }
       else {
@@ -146,6 +160,7 @@ export class DataProvider {
 
       }
     }
+    },1000)
     return studentThisRoom;
   }
 
@@ -268,6 +283,5 @@ export class DataProvider {
       }
     });
     return taskDetail;
-  }
-  
+  }  
 }

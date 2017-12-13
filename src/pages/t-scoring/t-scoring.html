@@ -1,0 +1,32 @@
+<!--
+  Generated template for the TScoringPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <img src="pic/logo.png" class="logo">
+    </ion-title>
+    <ion-buttons end>
+    <button ion-button icon-left *ngIf="!edit" (click)="changeToEdit()">Edit</button>
+    <button ion-button icon-left *ngIf="edit" (click)="changeToEdit()">Save</button>
+    </ion-buttons>
+  </ion-navbar> 
+
+</ion-header>
+
+<ion-content padding>
+	<ion-label> {{subject_name}} , {{room_name}}</ion-label>
+
+	<ion-label class="name"> รายชื่อนักเรียน </ion-label>
+	<ion-row *ngFor="let st of showStdTask">
+		<ion-col col-8>{{st.std_no}} {{st.std_name}} {{st.std_surname}}</ion-col>
+		<ion-col class="detail" *ngIf="!edit">{{st.score}}</ion-col>
+    <ion-col class="detail" *ngIf="edit">
+      <ion-input type="number" min=0 [(ngModel)]="st.score"></ion-input>
+    </ion-col>
+	</ion-row>
+</ion-content>

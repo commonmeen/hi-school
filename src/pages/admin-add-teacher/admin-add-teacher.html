@@ -25,15 +25,15 @@
     </ion-item>
     <ion-item>
       <ion-label>เลขประจำตัวประชาชน</ion-label>
-      <ion-input type="number" formControlName="national" [(ngModel)]="national"></ion-input>
+      <ion-input type="number" placeholder="ex. 1234567891xxx" formControlName="national" [(ngModel)]="national"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>เบอร์โทร</ion-label>
-      <ion-input type="number" formControlName="tel" [(ngModel)]="tel"></ion-input>
+      <ion-input type="number" placeholder="ex. 099888xxxx" formControlName="tel" [(ngModel)]="tel"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>อีเมลล์</ion-label>
-      <ion-input type="email" formControlName="email" [(ngModel)]="email"></ion-input>
+      <ion-input type="email" placeholder="ex. xxx@sit.kmutt.ac.th" formControlName="email" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col><button ion-button type="submit" >เพิ่ม</button></ion-col>

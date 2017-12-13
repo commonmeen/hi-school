@@ -5,6 +5,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../../providers/data/data';
 import { TaskAddPage } from '../t-task-add/t-task-add' ;
+import { ModalController } from 'ionic-angular';
+import { ScoringPage } from '../t-scoring/t-scoring' ;
 
 /**
  * Generated class for the TTaskPage page.
@@ -18,6 +20,7 @@ import { TaskAddPage } from '../t-task-add/t-task-add' ;
   selector: 'page-t-task',
   templateUrl: 't-task.html',
 })
+
 export class TaskPage {
   tasks: any[];
   allTask : any[] = [];
@@ -42,7 +45,8 @@ export class TaskPage {
     public fireBase: AngularFireDatabase,
     public storage: Storage,
     public provideData: DataProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController) {
 
 
     this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
@@ -124,4 +128,8 @@ export class TaskPage {
     this.showTask();
   }
 
+  scoring(task){
+    let a = {r_name : this.roomInput, s_name : this.subjectInput, task : task};
+    this.navCtrl.push(ScoringPage,a);
+  }
 }

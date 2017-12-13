@@ -106,6 +106,8 @@ export class TaskAddPage {
   	if (this.task.$key == null) {
         let newTask: any = {task_no:this.task_no, task_name:this.name, score: this.score, r_no:this.room.r_no, description: this.description, deadline:this.deadline, c_no:this.category.substring(0,6)};
         this.data.getTask().push(newTask);
+        console.log("task success");
+        this.joinStdTask(this.task_no);
         this.navCtrl.pop();
 
         let toast = this.toastCtrl.create({
@@ -130,6 +132,20 @@ export class TaskAddPage {
         });
         toast.present();
       }
+  }
+
+  joinStdTask(task_no:number){
+    console.log("stdTask success1",this.room.r_no);
+    let studentThisRoom = this.data.getStudentsByRoom(this.room.r_no);
+    console.log("stdTask success1",studentThisRoom);
+    setTimeout(()=>{
+    for(var i = studentThisRoom.length -1 ; i>=0 ; i--){
+      let addStdTask = {std_no : studentThisRoom[i].std_no, task_no: task_no-1, score:0};
+      this.data.getStdTask().push(addStdTask);
+      console.log("stdTask success3");
+    }
+    console.log("stdTask success2");
+    },1000)
   }
 
 }
