@@ -1,19 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-//import { AngularFireModule, FirebaseApp } from 'angularfire2' ;
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../../providers/data/data';
 import { TaskAddPage } from '../t-task-add/t-task-add' ;
 import { ModalController } from 'ionic-angular';
 import { ScoringPage } from '../t-scoring/t-scoring' ;
-
-/**
- * Generated class for the TTaskPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -30,7 +22,8 @@ export class TaskPage {
   getRoom:any[]=[];
   getSubject:any[]=[];
   task:any[]=[];
-  roomDetail:any[]=[];
+  roomDetail:any[]=[]; 
+  getStdTask : any [] = [] ;
 
   taskDetail: any = { t_name: '' };
   userId: number;
@@ -38,8 +31,6 @@ export class TaskPage {
   subjectInput:any;
   roomInput:any;
   
-
-
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public fireBase: AngularFireDatabase,
@@ -48,45 +39,38 @@ export class TaskPage {
     public loadingCtrl: LoadingController,
     public modalCtrl: ModalController) {
 
-
-    this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
+    setTimeout(()=>{
+    this.storage.get('UserId').then((data) => {
       this.userId = data;
-      console.log("user idddddddddd", this.userId);
-    }));
+    });
+  },1100)
 
     this.presentLoading();
 
     this.provideData.getTeach().subscribe(data=>{
       this.getTeach = data;
-    })
+    });
     this.provideData.getRoom().subscribe(data=>{
       this.getRoom = data;
-    })
+    });
     this.provideData.getSubject().subscribe(data=>{
       this.getSubject = data;
-    })
+    });
+    this.provideData.getStdTask().subscribe(data=>{
+      this.getStdTask = data;
+    });
     setTimeout(()=>{
       this.teacherDetail = this.provideData.findTeacher(this.userId);
-      console.log("มาแล้วจ้าาาาา Teacher",this.teacherDetail);
       this.teachDetail = this.provideData.findTeachByTeacher(this.teacherDetail);
-      console.log("มาแล้วจ้าาาาา Teach",this.teachDetail);
       this.subjectDetail = this.provideData.findSubjectByTeach(this.teachDetail);
-      console.log("มาแล้วจ้าาาาา Sub",this.subjectDetail);
-    },1000)
+    },1200)
     
-
-    console.log("Sub Input",this.subjectInput);
     this.provideData.getTask().subscribe(data=>{
       this.allTask = data;
     })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TTaskPage');
-  }
-
   showRoom(){
-    console.log("เข้าสักทีสิโว้ยยยยยยยยยยยยยยยยยยยยยยยยย");
     this.roomDetail = this.provideData.findRoomBySubject(this.subjectInput);
   }
 
@@ -97,29 +81,31 @@ export class TaskPage {
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
-      duration: 1000
+      duration: 1200
     });
     loader.present();
   }
 
   addTask(){
-    console.log("ADD");
     let a = {r_name : this.roomInput, s_name : this.subjectInput};
     this.navCtrl.push(TaskAddPage,a);
   }
 
   editTask(task:any){
-    console.log("Edit",task);
     let a = {r_name : this.roomInput, s_name : this.subjectInput, task : task};
     this.navCtrl.push(TaskAddPage,a);
   }
 
   deleteTask(task_no:any){
-    // console.log(this.allTask.length - 1);
+    for (var y = this.getStdTask.length -1 ; y>=0 ; y--){
+      if (this.getStdTask[y].task_no == task_no){
+        let stdTasksKey = this.getStdTask[y].$key ;
+        this.provideData.getStdTask().remove(stdTasksKey);
+      }
+    }
     for (var z = this.allTask.length - 1 ; z >= 0 ; z--) {
       if (this.allTask[z].task_no == task_no) {
         let TaskKey = this.allTask[z].$key;
-        console.log("Remove",TaskKey);
         this.provideData.getTask().remove(TaskKey); 
         break;
       }

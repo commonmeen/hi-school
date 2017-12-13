@@ -1,9 +1,4 @@
-<!--
-  Generated template for the TeacherProfileDetailPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -16,11 +11,11 @@
 
 
 <ion-content padding>
-  <img src="pic/girl.png" class="t-profile">
+  <img src="{{pic}}" (click)="openCamera()" class="t-profile">
   <br><br>
   <ion-list >
     <ion-item >
-      ชื่อ-นามสกุล 
+      ชื่อ-นามสกุล
       <p>{{teacherDetail.t_name}}  {{teacherDetail.t_surname}}</p>
     </ion-item>
     <ion-item>

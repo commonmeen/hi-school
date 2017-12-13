@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { DataProvider } from '../../providers/data/data' ;
 import { ToastController, AlertController } from 'ionic-angular';
-/**
- * Generated class for the TTaskAddPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -65,7 +59,6 @@ export class TaskAddPage {
     for (var i = this.allSubject.length -1 ; i>=0 ; i--){
     	if(this.allSubject[i].s_name == s_name){
     		this.subject = this.allSubject[i];
-    		console.log("sname มา");
     		break;
     	}
     }
@@ -76,7 +69,7 @@ export class TaskAddPage {
         this.category = this.categoryThisSubject[j].c_no + " " +this.categoryThisSubject[j].c_name ;
       }
     }
-  },1000)
+  },1000);
 
     this.data.getRoom().subscribe(data=>{
       this.allRoom = data;
@@ -84,7 +77,6 @@ export class TaskAddPage {
     for (var k = this.allRoom.length -1 ; k>=0 ; k--){
     	if(this.allRoom[k].r_name == r_name){
     		this.room = this.allRoom[k];
-    		console.log("rname มา");
     		break;
     	}
     }
@@ -98,15 +90,10 @@ export class TaskAddPage {
     );
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TTaskAddPage');
-  }
-
   addTask(){
   	if (this.task.$key == null) {
         let newTask: any = {task_no:this.task_no, task_name:this.name, score: this.score, r_no:this.room.r_no, description: this.description, deadline:this.deadline, c_no:this.category.substring(0,6)};
         this.data.getTask().push(newTask);
-        console.log("task success");
         this.joinStdTask(this.task_no);
         this.navCtrl.pop();
 
@@ -118,9 +105,7 @@ export class TaskAddPage {
         toast.present();
 
       } else {
-        //console.log("keyyyyyyyyyyyyyyyyyyyyy", this.categoryDetail.$key);
         let newTask: any = {task_no:this.task.task_no, task_name:this.name, score: this.score, r_no:this.room.r_no, description: this.description, deadline:this.deadline, c_no:this.category.substring(0,6)};
-        // console.log("นิววววววว", newCat);
         let TaskKey = this.task.$key;
         this.data.updateTask(TaskKey, newTask);
         this.navCtrl.pop();
@@ -135,17 +120,13 @@ export class TaskAddPage {
   }
 
   joinStdTask(task_no:number){
-    console.log("stdTask success1",this.room.r_no);
     let studentThisRoom = this.data.getStudentsByRoom(this.room.r_no);
-    console.log("stdTask success1",studentThisRoom);
     setTimeout(()=>{
     for(var i = studentThisRoom.length -1 ; i>=0 ; i--){
       let addStdTask = {std_no : studentThisRoom[i].std_no, task_no: task_no-1, score:0};
       this.data.getStdTask().push(addStdTask);
-      console.log("stdTask success3");
     }
-    console.log("stdTask success2");
-    },1000)
+    },1000);
   }
 
 }

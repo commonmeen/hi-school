@@ -72,8 +72,7 @@ students:any[]=[];
 
   logout(){
     this.storage.clear();
-    // this.app.getRootNav().setRoot(HomePage);
-    // this.app.getRootNav().pop();
+    // this.navCtrl.pop();
     // this.app.unregisterRootNav(this.app.getRootNavById('n5'));
     // console.log(this.app.getRootNavs())
     this.app.getRootNav().setRoot(HomePage);

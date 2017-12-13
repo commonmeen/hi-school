@@ -2,13 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
-
-/*
-  Generated class for the DataProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DataProvider {
   teachers: FirebaseListObservable<any[]>;
@@ -22,9 +15,7 @@ export class DataProvider {
   teacherDetail: any;
   allTeacher: any[] = [];
   teachForMatch : any[]=[];
-
   userId: number;
-
 
   constructor(public angularfire: AngularFireDatabase, public a: HttpClient) {
   
@@ -123,10 +114,8 @@ export class DataProvider {
             if (listCategory[0].c_no == allCategory[i].c_no) {
               index = 0;
             }
-            console.log("index", index);
             if (index > -1) {
               listCategory.splice(index, 1);
-              console.log("splice" + allCategory[i].c_no + "แล้ว");
             } 
           }
           listCategory.push(allCategory[i]);
@@ -142,11 +131,10 @@ export class DataProvider {
     this.getStudents().subscribe(data => {
       allStudent = data;
     });
+
     setTimeout(()=>{
     for (var i = allStudent.length - 1; i >= 0; i--) {
-      // console.log("std room dp");
       if (allStudent[i].r_no == roomNo) {
-
         studentThisRoom.push(allStudent[i]);
       }
       else {
@@ -154,13 +142,11 @@ export class DataProvider {
           let index = studentThisRoom.indexOf(allStudent[i]);
           if (index > -1) {
             studentThisRoom.splice(index, 1);
-            console.log("splice" + allStudent[i].t_no + "แล้ว");
           }
         }
-
       }
     }
-    },1000)
+    },1000);
     return studentThisRoom;
   }
 
@@ -197,7 +183,7 @@ export class DataProvider {
     let subjectDetail: any[] = [];
     this.getSubject().subscribe(data => {
       getSubject = data;
-    })
+    });
     for (let i = getSubject.length - 1; i >= 0; i--) {
       for (let j = teachDetail.length - 1; j >= 0; j--) {
         if (getSubject[i].s_no == teachDetail[j].s_no) {
@@ -218,14 +204,13 @@ export class DataProvider {
     let roomDetail: any[] = [];
     this.getSubject().subscribe(data => {
       getSubject = data;
-    })
+    });
     this.getTeach().subscribe(data => {
       getTeach = data;
-      console.log("GET TEACH", getTeach);
-    })
+    });
     this.getRoom().subscribe(data => {
       getRoom = data;
-    })
+    });
 
     for (let i = getSubject.length - 1; i >= 0; i--) {
       if (getSubject[i].s_name == subjectName) {
@@ -242,7 +227,6 @@ export class DataProvider {
         }
       }
     }
-
     return roomDetail;
   }
 
@@ -270,16 +254,13 @@ export class DataProvider {
               if (taskDetail[0].task_no == getTask[j].task_no) {
                 index = 0;
               }
-              console.log("index", index);
               if (index > -1) {
                 taskDetail.splice(index, 1);
-                console.log("splice" + getTask[j].task_no + "แล้ว");
               } else {
               }
             }
           taskDetail.push(getTask[j]);
         }
-
       }
     });
     return taskDetail;

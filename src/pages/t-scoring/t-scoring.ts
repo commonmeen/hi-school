@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data' ;
 import { AlertController } from 'ionic-angular';
-/**
- * Generated class for the TScoringPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -28,15 +22,15 @@ export class ScoringPage {
   maxScore : number ;
   edit : boolean = false ;
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  	public data :DataProvider,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+  	public data :DataProvider,
+    public alertCtrl: AlertController) {
   
   	this.room_name = this.navParams.get("r_name");
   	this.subject_name = this.navParams.get("s_name");
   	this.task = this.navParams.get("task");
   	this.maxScore = this.task.score ;
-    console.log("max",this.maxScore);
 
   	this.data.getRoom().subscribe(data=>{
       let allRoom = data ;
@@ -53,62 +47,47 @@ export class ScoringPage {
     this.data.getStudents().subscribe(data=>{
     	this.allStudent = data ;
     });
-    // console.log("all",this.allStdTask);
     
-   
-
     setTimeout(()=>{
-    	// console.log("all",this.allStdTask);
-    	// console.log("2",this.task.task_no);
     for(var i = this.allStdTask.length-1 ; i>=0 ; i--){
-    	// console.log("2",this.task.task_no);
-    	// console.log("all",this.allStdTask);
     	if(this.allStdTask[i].task_no== this.task.task_no){
-    		console.log("all",this.allStudent);
         this.saveStd.push(this.allStdTask[i]);
     		for(var j = this.allStudent.length-1 ; j>=0 ; j--){
     			if(this.allStudent[j].std_no == this.allStdTask[i].std_no){
     				let newstd = {std_no:this.allStdTask[i].std_no,std_name:this.allStudent[j].std_name,
     					std_surname:this.allStudent[j].std_surname,score:this.allStdTask[i].score};
     				this.showStdTask.push(newstd);
-    				console.log("ppp");
     			}
     		}
-    		
     	}
     }
-    },1000)
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TScoringPage');
+    },1000);
   }
 
   changeToEdit(){
+    let status = 0 ;
     if(this.edit){
       for(var i = this.showStdTask.length-1 ; i>=0 ; i--){
         if(this.showStdTask[i].score >= 0 && parseInt(this.showStdTask[i].score) <= this.maxScore){
-          this.edit = false ; 
-          // console.log("Test > score",this.showStdTask[i].score);
-          // console.log("Test > score",this.maxScore);
           let x = {task_no:this.task.task_no, std_no:this.showStdTask[i].std_no, score:this.showStdTask[i].score};
           for(var j = this.allStdTask.length-1 ; j>=0 ; j--){
             if(this.allStdTask[j].std_no == this.showStdTask[i].std_no && this.allStdTask[j].task_no==this.task.task_no){
               let key = this.allStdTask[j].$key ;
               this.data.updateStdTask(key,x);
             }
-          }        
-          
+          }         
         } else {
-          this.edit = true ;
+          status = 1 ;
           let alert = this.alertCtrl.create({
             title: 'ให้คะแนนผิดพลาด',
             subTitle: 'ไม่สามารถให้คะแนนมากกว่าคะแนนเต็ม หรือ ให้คะแนนติดลบได้',
             buttons: ['Try again']
           });
           alert.present();
-
         }
+      }
+      if(status == 0){
+        this.edit = false ;
       }
     } else {
       this.edit = true ;
