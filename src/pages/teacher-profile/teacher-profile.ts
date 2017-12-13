@@ -4,11 +4,11 @@ import { TeacherProfileDetailPage } from '../teacher-profile-detail/teacher-prof
 //import { AngularFireModule } from 'angularfire2' ;
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController,MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { CategoryPage } from '../t-category/t-category';
 import { THelpPage } from '../t-help/t-help';
-
+import { AboutUsPage } from '../about-us/about-us' ;
 
 /**
  * Generated class for the TeacherProfilePage page.
@@ -32,7 +32,8 @@ export class TeacherProfilePage {
     public fireBase: AngularFireDatabase,
     public storage: Storage, 
     public loadingCtrl: LoadingController,
-    public app: App) {
+    public app: App,
+    public menuCtrl: MenuController) {
     //   console.log(navParams.data);
     this.storage.ready().then(() => this.storage.get('UserId').then((data) => {
       this.userId = data;
@@ -92,5 +93,13 @@ export class TeacherProfilePage {
   }
   moveToHelp(){
     this.navCtrl.push(THelpPage);
+  }
+
+  openMenu() {
+    this.menuCtrl.open();
+  }
+
+   moveToAboutUs(){
+    this.navCtrl.push(AboutUsPage);
   }
 }

@@ -7,6 +7,10 @@
 <ion-header>
 
   <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-nav #content></ion-nav>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title ><img src="pic/logo.png" class="logo"></ion-title>
     <ion-buttons end>
     <button ion-button small outline style="color:#ffff" class="logout" (click)="logout()">Logout</button>
@@ -17,6 +21,25 @@
 
 
 <ion-content padding>
+
+  <ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Option</ion-title>
+      </ion-toolbar>
+    </ion-header>  
+    <ion-content>
+      <ion-list>
+        <button ion-item (click)="moveToHelp()">
+          วิธีการใช้งานระบบ
+        </button>
+        <button ion-item (click)="moveToAboutUs()">
+          เกี่ยวกับพวกเรา
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
   <ion-card style="text-align:center">
       <img src="pic/girl.png" class="t-profile"><br>
       <p >Hello!</p>

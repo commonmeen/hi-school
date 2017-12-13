@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AHelpPage } from '../a-help/a-help';
+import { AboutUsPage } from '../about-us/about-us';
 
 
 
@@ -82,6 +83,10 @@ students:any[]=[];
 
   moveToHelp(){
     this.navCtrl.push(AHelpPage);
+  }
+
+  moveToAboutUs(){
+    this.navCtrl.push(AboutUsPage);
   }
 }
 

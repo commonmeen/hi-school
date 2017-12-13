@@ -30,6 +30,7 @@ import { THelpPage } from '../pages/t-help/t-help';
 import { AHelpPage } from '../pages/a-help/a-help';
 import { TaskAddPage } from '../pages/t-task-add/t-task-add' ;
 import { ScoringPage } from '../pages/t-scoring/t-scoring' ;
+import { AboutUsPage} from '../pages/about-us/about-us' ;
 
 export const config = {
   apiKey: "AIzaSyA0pHeRyxU_Fx-Ep6_5SgDuZp-Gz84CnMA",
@@ -61,7 +62,8 @@ export const config = {
     THelpPage,
     AHelpPage,
     TaskAddPage,
-    ScoringPage
+    ScoringPage,
+    AboutUsPage
 
   ],
   imports: [
@@ -94,7 +96,8 @@ export const config = {
     THelpPage,
     AHelpPage,
     TaskAddPage,
-    ScoringPage
+    ScoringPage,
+    AboutUsPage
 
   ],
   providers: [
