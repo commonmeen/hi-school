@@ -35,30 +35,56 @@ export class RoomPage {
   }
   
   addRoom(): void {
-     let newRoom: string = prompt("New Room") ;
-     let rno : number ;
-     let status = 0 ;
-     if (newRoom != '' && newRoom != null) {
-        for (var i = this.rooms.length - 1; i >= 0; i--) {
-          console.log("roomloop");
-          if (newRoom == this.rooms[i].r_name){
-            let alert = this.alertCtrl.create({
-              title: 'Error!',
-              subTitle: newRoom + " มีอยู่ในรายการแล้ว",
-              buttons: ['OK']
-            });
-            alert.present();
-            status = 1 ;
-            console.log()
-            break ;
+     // let newRoom: string = prompt("New Room") ;
+     let newRoom = '';
+     let prompt = this.alertCtrl.create({
+      title: 'สร้างห้องใหม่',
+      message: "กรุณาใส่ชื่อห้อง",
+      inputs: [
+        {
+          name: 'roomName',
+          placeholder: 'Ex. ป.1/1'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            newRoom = data.roomName ;
+            let rno : number ;
+            let status = 0 ;
+            if (newRoom != '' && newRoom != null) {
+              for (var i = this.rooms.length - 1; i >= 0; i--) {
+                console.log("roomloop");
+                if (newRoom == this.rooms[i].r_name){
+                  let alert = this.alertCtrl.create({
+                    title: 'Error!',
+                    subTitle: newRoom + " มีอยู่ในรายการแล้ว",
+                    buttons: ['OK']
+                  });
+                  alert.present();
+                  status = 1 ;
+                  console.log()
+                  break ;
+                }
+              }
+              if (status == 0) {
+                rno = parseInt(this.rooms[this.rooms.length - 1].r_no);
+                rno += 1;
+                let add:any = {r_name:newRoom,r_no:rno,stdCount:0};
+                this.fireBase.list("/Room").push(add);
+              }
+            }
           }
         }
-        if (status == 0) {
-          rno = parseInt(this.rooms[this.rooms.length - 1].r_no);
-          rno += 1;
-          let add:any = {r_name:newRoom,r_no:rno,stdCount:0};
-          this.fireBase.list("/Room").push(add);
-        }
-     }
-   }
+      ]
+    });
+    prompt.present();
+  }
 }

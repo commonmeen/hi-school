@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms' ;
 
 import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher";
@@ -65,11 +66,12 @@ export const config = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     IonicStorageModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    FormsModule
   ],
   bootstrap: [IonicApp, MyApp],
   entryComponents: [

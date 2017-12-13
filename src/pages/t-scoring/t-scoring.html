@@ -26,7 +26,7 @@
 		<ion-col col-8>{{st.std_no}} {{st.std_name}} {{st.std_surname}}</ion-col>
 		<ion-col class="detail" *ngIf="!edit">{{st.score}}</ion-col>
     <ion-col class="detail" *ngIf="edit">
-      <ion-input type="number" min=0 [(ngModel)]="st.score"></ion-input>
+      <ion-input type="number" min=0 max={{maxScore}} [(ngModel)]="st.score"></ion-input>
     </ion-col>
 	</ion-row>
 </ion-content>
