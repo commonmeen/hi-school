@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ToastController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../../providers/data/data';
 import { TaskAddPage } from '../t-task-add/t-task-add' ;
@@ -16,7 +17,7 @@ import { ScoringPage } from '../t-scoring/t-scoring' ;
 export class TaskPage {
   tasks: any[];
   allTask : any[] = [];
-  teachDetail:any[]=[];
+  teachDetail:any ;
   subjectDetail:any[]=[];
   getTeach:any[]=[];
   getRoom:any[]=[];
@@ -24,6 +25,7 @@ export class TaskPage {
   task:any[]=[];
   roomDetail:any[]=[]; 
   getStdTask : any [] = [] ;
+  getCategory : any[] = [] ;
 
   taskDetail: any = { t_name: '' };
   userId: number;
@@ -37,7 +39,8 @@ export class TaskPage {
     public storage: Storage,
     public provideData: DataProvider,
     public loadingCtrl: LoadingController,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public alert: AlertController) {
 
     setTimeout(()=>{
     this.storage.get('UserId').then((data) => {
@@ -59,23 +62,41 @@ export class TaskPage {
     this.provideData.getStdTask().subscribe(data=>{
       this.getStdTask = data;
     });
-    setTimeout(()=>{
-      this.teacherDetail = this.provideData.findTeacher(this.userId);
-      this.teachDetail = this.provideData.findTeachByTeacher(this.teacherDetail);
-      this.subjectDetail = this.provideData.findSubjectByTeach(this.teachDetail);
-    },1200)
     
+    setTimeout(() => {
+      this.teacherDetail = this.provideData.findTeacher(this.userId);
+
+      for (let j = this.getTeach.length - 1; j >= 0; j--) {                              //join teachs and teacher detail by t_no
+        if (this.getTeach[j].t_no == this.teacherDetail.t_no) {
+          this.teachDetail = this.getTeach[j];
+          for (let k = this.getSubject.length - 1; k >= 0; k--) {                           //join subjects and teach detail by s_no
+            if (this.getSubject[k].s_no == this.teachDetail.s_no) {
+              if (this.subjectDetail.indexOf(this.getSubject[k])== -1){
+                this.subjectDetail.push(this.getSubject[k]);
+              }
+              break;
+            }
+          }
+        }
+      }
+    }, 1500);
+
     this.provideData.getTask().subscribe(data=>{
       this.allTask = data;
     })
   }
 
   showRoom(){
+    this.roomInput = "";
     this.roomDetail = this.provideData.findRoomBySubject(this.subjectInput);
   }
 
   showTask(){
-    this.task = this.provideData.findTaskByRoom(this.roomInput);
+    if (this.roomInput != ""){
+      this.task = this.provideData.findTaskByRoom(this.roomInput,this.subjectInput);
+    } else {
+      this.task = undefined ;
+    }
   }
 
   presentLoading() {
@@ -97,21 +118,26 @@ export class TaskPage {
   }
 
   deleteTask(task_no:any){
-    for (var y = this.getStdTask.length -1 ; y>=0 ; y--){
-      if (this.getStdTask[y].task_no == task_no){
-        let stdTasksKey = this.getStdTask[y].$key ;
-        this.provideData.getStdTask().remove(stdTasksKey);
-      }
-    }
-    for (var z = this.allTask.length - 1 ; z >= 0 ; z--) {
-      if (this.allTask[z].task_no == task_no) {
-        let TaskKey = this.allTask[z].$key;
-        this.provideData.getTask().remove(TaskKey); 
-        break;
-      }
-    }
-    this.tasks = [] ;
-    this.showTask();
+    let confirm = this.alert.create({
+      title: 'คุณต้องการลบการบ้านนี้?',
+      message: 'ถ้าคุณลบการบ้าน คะแนนของนักเรียนจะหายไปด้วย',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            this.provideData.deleteTask(task_no);
+            this.tasks = [] ;
+            this.showTask();
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   scoring(task){

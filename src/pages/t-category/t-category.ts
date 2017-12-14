@@ -60,7 +60,9 @@ export class CategoryPage {
           this.teachDetail = this.teachs[j];
           for (let k = this.subjects.length - 1; k >= 0; k--) {                           //join subjects and teach detail by s_no
             if (this.subjects[k].s_no == this.teachDetail.s_no) {
+              if (this.subjectDetial.indexOf(this.subjects[k])== -1){
               this.subjectDetial.push(this.subjects[k]);
+              }
               break;
             }
           }

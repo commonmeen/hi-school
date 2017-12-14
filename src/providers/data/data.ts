@@ -96,9 +96,49 @@ export class DataProvider {
     this.stdTasks.update(key, value);
   }
 
-  deleteCategory(key) {
+  deleteCategory(key,c_no) {
+    let allTask : any[] = [] ;
+    let deleteTask : any[] = [] ;
     this.getCategory();
+    this.getTask().subscribe(data => {
+      allTask = data;
+      for(var i = allTask.length-1 ; i>=0; i--){
+        if(allTask[i].c_no == c_no){
+          deleteTask.push(allTask[i]);
+        }
+      }
+    });
+
+    for(var j = deleteTask.length-1 ; j>=0 ; j--){
+      this.deleteTask(deleteTask[j].task_no);
+    }
     this.categorys.remove(key);
+  }
+
+  deleteTask(task_no){
+    let allStdTask: any[] =[];
+    let allTask : any[] =[] ;
+
+    this.getStdTask().subscribe(data => {
+      allStdTask = data;
+    });
+    this.getTask().subscribe(data => {
+      allTask = data;
+    }); 
+
+    for (var y = allStdTask.length -1 ; y>=0 ; y--){
+      if (allStdTask[y].task_no == task_no){
+        let stdTasksKey = allStdTask[y].$key ;
+        this.getStdTask().remove(stdTasksKey);
+      }
+    }
+    for (var z = allTask.length - 1 ; z >= 0 ; z--) {
+      if (allTask[z].task_no == task_no) {
+        let TaskKey = allTask[z].$key;
+        this.getTask().remove(TaskKey); 
+        break;
+      }
+    }
   }
 
   getCatBySub(subNo: string): any[] {
@@ -178,23 +218,6 @@ export class DataProvider {
     return teachDetail;
   }
 
-  findSubjectByTeach(teachDetail: any[]): any[] {
-    let getSubject: any[] = [];
-    let subjectDetail: any[] = [];
-    this.getSubject().subscribe(data => {
-      getSubject = data;
-    });
-    for (let i = getSubject.length - 1; i >= 0; i--) {
-      for (let j = teachDetail.length - 1; j >= 0; j--) {
-        if (getSubject[i].s_no == teachDetail[j].s_no) {
-          subjectDetail.push(getSubject[i]);
-        }
-      }
-
-    }
-    return subjectDetail;
-  }
-
   findRoomBySubject(subjectName): any[] {
     let getSubject: any[] = [];
     let subjectDetail: any[] = [];
@@ -231,10 +254,14 @@ export class DataProvider {
   }
 
 
-  findTaskByRoom(roomName): any[] {
+  findTaskByRoom(roomName,subjectName): any[] {
     let getTask: any[] = [];
-    let getRoom: any;
+    let getSubject: any[] = [];
+    let getRoom: any[] = [];
+    let getCategory: any[] = [];
+    let listCatThisSub : any[] = [] ;
     let roomDetail: any;
+    let subjectDetail : any;
     let taskDetail: any[] = [];
     
     this.getRoom().subscribe(data => {
@@ -245,24 +272,47 @@ export class DataProvider {
         roomDetail = getRoom[i];
       }
     }
+    
+    this.getSubject().subscribe(data => {
+      getSubject = data;
+    });
+    for (let j = getSubject.length - 1; j >= 0; j--) {
+      if (getSubject[j].s_name == subjectName) {
+        subjectDetail = getSubject[j];
+      }
+    }
+
+    this.getCategory().subscribe(data => {
+      getCategory = data;
+    });
+    setTimeout(() => {
+    for (let k = getCategory.length-1 ; k>=0 ; k--){
+      if(getCategory[k].s_no == subjectDetail.s_no){
+        listCatThisSub.push(getCategory[k]);
+      }
+    }
     this.getTask().subscribe(data => {
       getTask = data;
-      for (let j = getTask.length - 1; j >= 0; j--) {
-        if (getTask[j].r_no == roomDetail.r_no) {
-          if (taskDetail.length != 0) {
-              let index = taskDetail.indexOf(getTask[j]);
-              if (taskDetail[0].task_no == getTask[j].task_no) {
-                index = 0;
+      for (let l = getTask.length - 1; l >= 0; l--) {
+        if (getTask[l].r_no == roomDetail.r_no) {
+          for(let m =listCatThisSub.length-1 ; m>=0 ; m--){
+            if(getTask[l].c_no == listCatThisSub[m].c_no){
+              if (taskDetail.length != 0) {
+                let index = taskDetail.indexOf(getTask[l]);
+                if (taskDetail[0].task_no == getTask[l].task_no) {
+                  index = 0;
+                }
+                if (index > -1) {
+                  taskDetail.splice(index, 1);
+                }
               }
-              if (index > -1) {
-                taskDetail.splice(index, 1);
-              } else {
-              }
+              taskDetail.push(getTask[l]);
             }
-          taskDetail.push(getTask[j]);
+          }
         }
       }
     });
+    }, 500);
     return taskDetail;
   }  
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-//import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
 import { config } from '../../app/app.module';
@@ -35,7 +34,8 @@ export class TCategoryDetailPage {
     public fireBase: AngularFireDatabase,
     public provideData: DataProvider,
     public storage: Storage,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public alert:AlertController) {
 
     this.subject = this.navParams.data;
     this.listCategory = this.provideData.getCatBySub(this.subject.s_no);
@@ -102,20 +102,39 @@ export class TCategoryDetailPage {
   }
 
   deleteCategory(c) {
-    for (var i = this.getCategory.length - 1; i >= 0; i--) {
-      if (this.getCategory[i].c_no == c) {
-        this.categoryDetail = this.getCategory[i];
-        this.key = this.categoryDetail.$key;
-        for (var j = this.listCategory.length - 1; j >= 0; j--) {
-          if (this.listCategory[j].c_no == this.categoryDetail.c_no) {
-            this.totalPercent -= parseInt(this.listCategory[j].c_percent);
-            this.balancePercent = 100 - this.totalPercent;
-            this.listCategory.splice(j, 1);
-            break;
+    let confirm = this.alert.create({
+      title: 'คุณต้องการลบหมวดหมู่นี้?',
+      message: 'ถ้าคุณลบการบ้านและคะแนนในหมวดหมู่นี้จะถูกลบด้วย',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          handler: () => {
+          }
+        },
+        {
+          text: 'ลบ',
+          handler: () => {
+            let cnoDelete ;
+            for (var i = this.getCategory.length - 1; i >= 0; i--) {
+              if (this.getCategory[i].c_no == c) {
+                this.categoryDetail = this.getCategory[i];
+                cnoDelete = this.categoryDetail.c_no ;
+                this.key = this.categoryDetail.$key;
+                for (var j = this.listCategory.length - 1; j >= 0; j--) {
+                  if (this.listCategory[j].c_no == this.categoryDetail.c_no) {
+                    this.totalPercent -= parseInt(this.listCategory[j].c_percent);
+                    this.balancePercent = 100 - this.totalPercent;
+                    this.listCategory.splice(j, 1);
+                    break;
+                  }
+                }
+              }
+            }
+            this.provideData.deleteCategory(this.key,cnoDelete);
           }
         }
-      }
-    }
-    this.provideData.deleteCategory(this.key);
+      ]
+    });
+    confirm.present();
   }
 }
