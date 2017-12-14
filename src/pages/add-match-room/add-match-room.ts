@@ -44,9 +44,9 @@ export class AddMatchRoomPage {
     for (var j = this.allTeach.length -1 ; j>=0 ; j--){
     	if(this.subject.s_no == this.allTeach[j].s_no){
     		for (var k = this.showRoom.length -1 ; k>=0 ; k--){
-       			if(this.allTeach[j].r_no == this.showRoom[k].r_no){
-       				this.showRoom.splice(k,1);
-       			}
+     			if(this.allTeach[j].r_no == this.showRoom[k].r_no){
+     				this.showRoom.splice(k,1);
+     			}
    			}
     	}
     }

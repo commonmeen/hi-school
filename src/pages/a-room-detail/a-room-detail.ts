@@ -11,6 +11,7 @@ import { ModalController} from 'ionic-angular';
   selector: 'page-a-room-detail',
   templateUrl: 'a-room-detail.html', 
 })
+
 export class RoomDetailPage {
 	room : any ;
   allTeacher : any[] = [] ;

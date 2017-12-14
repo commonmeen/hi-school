@@ -43,10 +43,10 @@ export class TaskPage {
     public alert: AlertController) {
 
     setTimeout(()=>{
-    this.storage.get('UserId').then((data) => {
-      this.userId = data;
-    });
-  },1100);
+      this.storage.get('UserId').then((data) => {
+        this.userId = data;
+      });
+    },1100);
 
     this.presentLoading();
 

@@ -9,9 +9,13 @@ import { AlertController } from 'ionic-angular';
   selector: 'page-a-room',
   templateUrl: 'a-room.html',
 })
+
 export class RoomPage {
- rooms : any[] = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+
+  rooms : any[] = [];
+  
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
     public fireBase: AngularFireDatabase, 
     public alertCtrl: AlertController) {
   	fireBase.list("/Room").subscribe(data=>{
