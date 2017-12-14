@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { ToastController, AlertController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { DataProvider } from '../../providers/data/data';
 import { TaskAddPage } from '../t-task-add/t-task-add' ;

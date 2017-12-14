@@ -7,9 +7,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms' ;
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 
 import { HomePage } from '../pages/home/home';
 import { AllTeacherPage } from "../pages/all-teacher/all-teacher";

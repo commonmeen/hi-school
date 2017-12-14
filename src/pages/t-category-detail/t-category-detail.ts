@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { TCategoryAddPage } from '../t-category-add/t-category-add';
-import { config } from '../../app/app.module';
 import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';

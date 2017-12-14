@@ -5,7 +5,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from '@ionic/storage';
 import { LoadingController,MenuController } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { CategoryPage } from '../t-category/t-category';
 import { THelpPage } from '../t-help/t-help';
 import { AboutUsPage } from '../about-us/about-us' ;
 

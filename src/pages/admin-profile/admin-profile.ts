@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AdminAddUserPage } from '../admin-add-user/admin-add-user' ;
 import { AngularFireDatabase } from 'angularfire2/database' ;
 import { Storage } from '@ionic/storage';
-import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AHelpPage } from '../a-help/a-help';
 import { AboutUsPage } from '../about-us/about-us';

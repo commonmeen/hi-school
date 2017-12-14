@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Injectable()
 export class DataProvider {
@@ -144,7 +144,6 @@ export class DataProvider {
   getCatBySub(subNo: string): any[] {
     let allCategory: any[] = [];
     let listCategory: any[] = [];
-    let a: any;
     this.getCategory().subscribe(data => {
       allCategory = data;
       for (var i = allCategory.length - 1; i >= 0; i--) {

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TCategoryDetailPage } from '../t-category-detail/t-category-detail';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
-import { Subject } from 'rxjs/Subject';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
 import { LoadingController } from 'ionic-angular';
